@@ -31,7 +31,7 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
 2. Run the evaluation script:
     ```bash
     lrage \
-    --model hf --model_args pretrained=meta-llama/Llama-3.1-8B --tasks ssla_individual_defendants \
+    --model hf --model_args pretrained=meta-llama/Llama-3.1-8B --tasks abercrombie \
     --batch_size 8 --trust_remote_code --device cuda \
     --retrieve_docs --top_k 3 --retriever pyserini --retriever_args retriever_type=bm25,bm25_index_path=YOUR_INDEX_PATH \
     --rerank --reranker rerankers --reranker_args reranker_type=colbert \
