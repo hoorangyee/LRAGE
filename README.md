@@ -3,10 +3,6 @@
 
 LRAGE (Legal Retrieval Augmented Generation Evaluation) is an open-source toolkit designed to evaluate Large Language Models (LLMs) in a Retrieval-Augmented Generation (RAG) setting, specifically tailored for the legal domain. LRAGE is developed to address the unique challenges that Legal AI researchers face, such as building and evaluating retrieval-augmented systems effectively. It seamlessly integrates datasets and tools to help researchers in evaluating LLM performance on legal tasks without cumbersome engineering overhead.
 
-## Motivation
-
-Evaluating LLMs in a RAG setting is often a daunting task for Legal AI researchers, who typically face engineering challenges such as managing indices, retrieval, and dataset integration. LRAGE aims to minimize these challenges by providing an easy-to-use toolkit that streamlines evaluation workflows for legal AI tasks.
-
 ## Features
 
 - **Legal Domain Focused Evaluation**: LRAGE is specifically developed for evaluating LLMs in a RAG setting with datasets and document collections from the legal domain, such as Pile-of-law and LegalBench.
