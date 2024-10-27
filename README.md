@@ -12,8 +12,8 @@ Evaluating LLMs in a RAG setting is often a daunting task for Legal AI researche
 - **Legal Domain Focused Evaluation**: LRAGE is specifically developed for evaluating LLMs in a RAG setting with datasets and document collections from the legal domain, such as Pile-of-law and LegalBench.
 - **Retriever & Reranker Integration**: Easily integrate and evaluate different retrievers and rerankers. LRAGE modularizes retrieval and reranking components, allowing for flexible experimentation.
 - **Out-of-the-box Indexing**: Comes with pre-generated BM25 indices and embeddings for Pile-of-law, reducing the setup effort for researchers.
-- [] (In progress)**LLM-as-a-Judge**: Experimental feature where LLMs can be used to evaluate the output quality based on rubrics or prompts, aiming to reduce manual evaluation effort.
-- [] (In progress)**Graphical User Interface**: A GUI demo for intuitive usage, making the tool accessible even for those who are not deeply familiar with command-line interfaces. 
+- [ ] (In progress)**LLM-as-a-Judge**: Experimental feature where LLMs can be used to evaluate the output quality based on rubrics or prompts, aiming to reduce manual evaluation effort.
+- [ ] (In progress)**Graphical User Interface**: A GUI demo for intuitive usage, making the tool accessible even for those who are not deeply familiar with command-line interfaces. 
 
 ## Installation
 
