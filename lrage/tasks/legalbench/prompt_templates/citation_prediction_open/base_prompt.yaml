@@ -1,0 +1,10 @@
+doc_to_text: "Generate the best citation for the following texts, imagining you are\
+  \ in the following circuits.\n\nText: Claim construction requires determining how\
+  \ a skilled artisan would understand a claim term “in the context of the entire\
+  \ patent, including the specification.”\nCircuit: Federal Circuit\nCitation: Phillips\
+  \ v. AWH Corp.\n\nText: If she has direct evidence of discrimination, the court\
+  \ does not wade into the McDonnell Douglas test,4 but instead the burden shifts\
+  \ to Performance to “prove by a preponderance of the evidence that the same decision\
+  \ would have been made regardless of the discriminatory animus.”\nCircuit: Fifth\
+  \ Circuit\nCitation: Jones v. Robinson Prop. Grp., L.P.\t\n\nText: {{text}}\nCircuit:\
+  \ {{circuit}}\nCitation:"

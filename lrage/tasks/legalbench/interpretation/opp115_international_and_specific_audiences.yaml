@@ -1,0 +1,17 @@
+dataset_name: opp115_international_and_specific_audiences
+dataset_path: nguha/legalbench
+doc_to_choice:
+- 'Yes'
+- 'No'
+doc_to_target: '{{answer}}'
+group: legalbench_interpretation
+group_alias: interpretation
+include: ../prompt_templates/opp115_international_and_specific_audiences/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: opp115_international_and_specific_audiences
+test_split: test
+training_split: train

@@ -1,0 +1,18 @@
+dataset_name: insurance_policy_interpretation
+dataset_path: nguha/legalbench
+doc_to_choice:
+- A
+- B
+- C
+doc_to_target: '{{answer}}'
+group: legalbench_interpretation
+group_alias: interpretation
+include: ../prompt_templates/insurance_policy_interpretation/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: insurance_policy_interpretation
+test_split: test
+training_split: train

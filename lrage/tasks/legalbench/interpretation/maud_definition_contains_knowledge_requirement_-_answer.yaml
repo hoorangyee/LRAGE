@@ -1,0 +1,19 @@
+dataset_name: maud_definition_contains_knowledge_requirement_-_answer
+dataset_path: nguha/legalbench
+doc_to_choice:
+- A
+- B
+- C
+- D
+doc_to_target: '{{answer}}'
+group: legalbench_interpretation
+group_alias: interpretation
+include: ../prompt_templates/maud_definition_contains_knowledge_requirement_-_answer/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: maud_definition_contains_knowledge_requirement_-_answer
+test_split: test
+training_split: train

@@ -1,0 +1,1 @@
+from . import pyserini_retriever

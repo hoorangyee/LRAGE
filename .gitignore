@@ -1,0 +1,23 @@
+env
+*.pyc
+output/
+data/
+lm_cache
+.idea
+build
+dist
+*.egg-info
+venv
+.vscode/
+temp
+__pycache__
+.ipynb_checkpoints
+temp
+# IPython
+profile_default/
+ipython_config.py
+# don't track (the default location of) the cached requests
+lrage/caching/.cache
+# don't track files created by wandb
+wandb
+examples/wandb

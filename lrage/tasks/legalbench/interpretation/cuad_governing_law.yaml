@@ -1,0 +1,17 @@
+dataset_name: cuad_governing_law
+dataset_path: nguha/legalbench
+doc_to_choice:
+- 'Yes'
+- 'No'
+doc_to_target: '{{answer}}'
+group: legalbench_interpretation
+group_alias: interpretation
+include: ../prompt_templates/cuad_governing_law/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: cuad_governing_law
+test_split: test
+training_split: train

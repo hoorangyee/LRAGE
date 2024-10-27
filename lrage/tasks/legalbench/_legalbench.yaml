@@ -1,0 +1,6 @@
+group: legalbench
+task:
+  - legalbench_interpretation
+  - legalbench_issue
+  - legalbench_rhetorical_understanding
+  - legalbench_rule

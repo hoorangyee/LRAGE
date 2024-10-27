@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=40.8.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lrage"
+version = "0.1.0"
+authors = [
+    {name="Minhu Park", email="alsgn2003@uos.ac.kr"}
+]
+description = "A framework for evaluating RAG pipelines, especially adapted in legal domain"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.8"
+license = { "text" = "MIT" }
+dependencies = [
+    "accelerate>=0.26.0",
+    "evaluate",
+    "datasets>=2.16.0",
+    "evaluate>=0.4.0",
+    "jsonlines",
+    "numexpr",
+    "peft>=0.2.0",
+    "pybind11>=2.6.2",
+    "pytablewriter",
+    "rouge-score>=0.0.4",
+    "sacrebleu>=1.5.0",
+    "scikit-learn>=0.24.1",
+    "sqlitedict",
+    "torch>=1.8",
+    "tqdm-multiprocess",
+    "transformers>=4.1",
+    "zstandard",
+    "dill",
+    "word2number",
+    "more_itertools",
+    "pyserini>=0.36.0",
+    "rerankers>=0.5.3",
+]
+
+[tool.setuptools.packages.find]
+include = ["lrage*"]
+
+[tool.setuptools.package-data]
+lrage = ["**/*.yaml", "tasks/**/*"]
+
+[project.scripts]
+lrage = "lrage.__main__:cli_evaluate"
+
+[project.optional-dependencies]
+anthropic = ["anthropic"]
+dev = ["pytest", "pytest-cov", "pytest-xdist", "pre-commit", "mypy"]
+deepsparse = ["deepsparse-nightly[llm]>=1.8.0.20240404"]
+gptq = ["auto-gptq[triton]>=0.6.0"]
+hf_transfer = ["hf_transfer"]
+ifeval = ["langdetect", "immutabledict"]
+neuronx = ["optimum[neuronx]"]
+mamba = ["mamba_ssm", "causal-conv1d==1.0.2"]
+math = ["sympy>=1.12", "antlr4-python3-runtime==4.11"]
+multilingual = ["nagisa>=0.2.7", "jieba>=0.42.1", "pycountry"]
+openai = ["openai==1.3.9", "tiktoken"]
+optimum = ["optimum[openvino]"]
+promptsource = ["promptsource>=0.2.3"]
+sentencepiece = ["sentencepiece>=0.1.98"]
+sparseml = ["sparseml-nightly[llm]>=1.8.0.20240404"]
+vllm = ["vllm>=0.4.2"]
+zeno = ["pandas", "zeno-client"]
+wandb = ["wandb>=0.16.3", "pandas", "numpy"]
+unitxt = ["unitxt"]
+all = [
+    "lrage[anthropic]",
+    "lrage[dev]",
+    "lrage[deepsparse]",
+    "lrage[gptq]",
+    "lrage[hf_transfer]",
+    "lrage[ifeval]",
+    "lrage[mamba]",
+    "lrage[math]",
+    "lrage[multilingual]",
+    "lrage[openai]",
+    "lrage[promptsource]",
+    "lrage[sentencepiece]",
+    "lrage[sparseml]",
+    "lrage[vllm]",
+    "lrage[zeno]",
+    "lrage[wandb]",
+    "lrage[unitxt]"
+]

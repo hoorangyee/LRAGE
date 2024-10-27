@@ -1,0 +1,18 @@
+dataset_name: consumer_contracts_qa
+dataset_path: nguha/legalbench
+doc_to_choice:
+- 'Yes'
+- 'No'
+doc_to_query: question
+doc_to_target: '{{answer}}'
+group: legalbench_interpretation
+group_alias: interpretation
+include: ../prompt_templates/consumer_contracts_qa/base_prompt.yaml
+metric_list:
+- metric: balanced_acc
+  aggregation: balanced_acc
+  higher_is_better: true
+output_type: multiple_choice
+task: consumer_contracts_qa
+test_split: test
+training_split: train

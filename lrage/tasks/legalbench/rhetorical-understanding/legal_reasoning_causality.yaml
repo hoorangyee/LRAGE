@@ -1,0 +1,17 @@
+dataset_name: legal_reasoning_causality
+dataset_path: nguha/legalbench
+doc_to_choice:
+- 'Yes'
+- 'No'
+doc_to_target: '{{answer}}'
+group: legalbench_rhetorical_understanding
+group_alias: rhetorical_understanding
+include: ../prompt_templates/legal_reasoning_causality/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: legal_reasoning_causality
+test_split: test
+training_split: train

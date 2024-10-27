@@ -1,0 +1,22 @@
+dataset_name: oral_argument_question_purpose
+dataset_path: nguha/legalbench
+doc_to_choice:
+- Background
+- Clarification
+- Communicate
+- Criticism
+- Humor
+- Implications
+- Support
+doc_to_target: '{{answer}}'
+group: legalbench_rhetorical_understanding
+group_alias: rhetorical_understanding
+include: ../prompt_templates/oral_argument_question_purpose/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: oral_argument_question_purpose
+test_split: test
+training_split: train

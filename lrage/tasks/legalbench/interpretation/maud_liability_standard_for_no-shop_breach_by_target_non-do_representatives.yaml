@@ -1,0 +1,17 @@
+dataset_name: maud_liability_standard_for_no-shop_breach_by_target_non-do_representatives
+dataset_path: nguha/legalbench
+doc_to_choice:
+- A
+- B
+doc_to_target: '{{answer}}'
+group: legalbench_interpretation
+group_alias: interpretation
+include: ../prompt_templates/maud_liability_standard_for_no-shop_breach_by_target_non-do_representatives/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: maud_liability_standard_for_no-shop_breach_by_target_non-do_representatives
+test_split: test
+training_split: train
