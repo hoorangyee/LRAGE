@@ -56,9 +56,9 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
 
 ```
 @Misc{lrage,
-      title =        {LARGE: Legal Retrieval Augmented Generation Evaluation Tool},
-      author =       {Minhu Park and Wonseok Hwang},
-      howpublished = {\url{https://github.com/hoorangyee/LRAGE}},
-      year =         {2024}
+  title =        {LARGE: Legal Retrieval Augmented Generation Evaluation Tool},
+  author =       {Minhu Park and Wonseok Hwang},
+  howpublished = {\url{https://github.com/hoorangyee/LRAGE}},
+  year =         {2024}
 }   
 ```
