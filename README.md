@@ -55,10 +55,10 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
 ## Cite as
 
 ```
-@Misc{peft,
-  title =        {PEFT: State-of-the-art Parameter-Efficient Fine-Tuning methods},
-  author =       {Sourab Mangrulkar and Sylvain Gugger and Lysandre Debut and Younes Belkada and Sayak Paul and Benjamin Bossan},
-  howpublished = {\url{https://github.com/huggingface/peft}},
-  year =         {2022}
-}
+@Misc{lrage,
+  title =        {LARGE: Legal Retrieval Augmented Generation Evaluation Tool},
+  author =       {Minhu Park and Wonseok Hwang},
+  howpublished = {\url{https://github.com/hoorangyee/LRAGE}},
+  year =         {2024}
+}   
 ```
