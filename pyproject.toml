@@ -22,11 +22,15 @@ dependencies = [
     "evaluate",
     "datasets>=2.16.0",
     "evaluate>=0.4.0",
+    "faiss-cpu",
+    "faiss-gpu",
     "jsonlines",
     "numexpr",
     "peft>=0.2.0",
     "pybind11>=2.6.2",
+    "pyserini>=0.36.0",
     "pytablewriter",
+    "rerankers>=0.5.3",
     "rouge-score>=0.0.4",
     "sacrebleu>=1.5.0",
     "scikit-learn>=0.24.1",
@@ -38,8 +42,6 @@ dependencies = [
     "dill",
     "word2number",
     "more_itertools",
-    "pyserini>=0.36.0",
-    "rerankers>=0.5.3",
 ]
 
 [tool.setuptools.packages.find]
