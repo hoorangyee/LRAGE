@@ -52,7 +52,7 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
     --reranker_args reranker_type=colbert \
     ```
 
-## Cite as
+## Citation
 
 ```
 @Misc{lrage,
