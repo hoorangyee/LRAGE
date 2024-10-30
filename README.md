@@ -8,8 +8,8 @@ LRAGE (Legal Retrieval Augmented Generation Evaluation, pronounced as 'large') i
 - **Legal Domain Focused Evaluation**: LRAGE is specifically developed for evaluating LLMs in a RAG setting with datasets and document collections from the legal domain, such as [Pile-of-law](https://huggingface.co/datasets/pile-of-law/pile-of-law) and [LegalBench](https://github.com/HazyResearch/legalbench).
 - **Retriever & Reranker Integration**: Easily integrate and evaluate different retrievers and rerankers. LRAGE modularizes retrieval and reranking components, allowing for flexible experimentation.
 - **Out-of-the-box Indexing**: Comes with pre-generated BM25 indices and embeddings for Pile-of-law, reducing the setup effort for researchers.
-- [ ] (In progress)**LLM-as-a-Judge**: An experimental feature where LLMs are used to evaluate the quality of LLM responses on an instance-by-instance basis, using customizable rubrics within the RAG setting.
-- [ ] (In progress)**Graphical User Interface**: A GUI demo for intuitive usage, making the tool accessible even for those who are not deeply familiar with command-line interfaces.
+- (In progress)**LLM-as-a-Judge**: An experimental feature where LLMs are used to evaluate the quality of LLM responses on an instance-by-instance basis, using customizable rubrics within the RAG setting.
+- (In progress)**Graphical User Interface**: A GUI demo for intuitive usage, making the tool accessible even for those who are not deeply familiar with command-line interfaces.
 
 ## Extensions for RAG Evaluation from [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)
 
@@ -51,6 +51,16 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
     --reranker rerankers \
     --reranker_args reranker_type=colbert \
     ```
+
+## Roadmap
+
+- [ ] Implement LLM-as-a-judge functionality
+- [ ] Develop a GUI Demo for easier access and visualization
+- [ ] Publish and share Pile-of-law chunks
+- [ ] Publish and share Pile-of-law BM25 index
+- [ ] Publish and share Pile-of-law embeddings
+- [ ] Update pyserini_retriever to support Pyserini prebuilt index
+- [ ] Document more detailed usage instructions
 
 ## Citation
 
