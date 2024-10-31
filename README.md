@@ -70,6 +70,7 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
 - [ ] Publish and share Pile-of-law BM25 index
 - [ ] Publish and share Pile-of-law embeddings
 - [ ] Update pyserini_retriever to support Pyserini prebuilt index
+- [ ] Implement a simplified indexing feature
 - [ ] Document more detailed usage instructions
 
 ## Citation
