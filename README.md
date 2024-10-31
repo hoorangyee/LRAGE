@@ -72,6 +72,7 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
 - [ ] Update pyserini_retriever to support Pyserini prebuilt index
 - [ ] Implement a simplified indexing feature
 - [ ] Document more detailed usage instructions
+- [ ] Publish benchmark results obtained using LRAGE
 
 ## Citation
 
