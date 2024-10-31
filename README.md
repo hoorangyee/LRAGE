@@ -58,6 +58,10 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
     --reranker_args reranker_type=colbert \
     ```
 
+## Indexing
+
+**Note**: A simplified indexing feature will be provided in a future release. If you plan to use the pyserini retriever, please refer to [Pyserini's indexing documentation](https://github.com/castorini/pyserini/blob/master/docs/usage-index.md) for guidance in the meantime.  
+
 ## Roadmap
 
 - [ ] Implement LLM-as-a-judge functionality
