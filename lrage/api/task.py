@@ -376,10 +376,6 @@ class Task(abc.ABC):
     def doc_to_query(self, doc):
         pass
 
-    @abc.abstractmethod
-    def doc_to_rubric(self, doc):
-        pass
-
     def build_all_requests(
         self,
         *,
