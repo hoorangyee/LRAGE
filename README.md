@@ -13,7 +13,7 @@ LRAGE is developed to address the unique challenges that Legal AI researchers fa
 
 - **Pre-compiled indexes for the legal domain**: Comes with pre-generated BM25 indices and embeddings for Pile-of-law, reducing the setup effort for researchers.  
 
-- (In progress)**LLM-as-a-Judge**: A feature where LLMs are used to evaluate the quality of LLM responses on an instance-by-instance basis, using customizable rubrics within the RAG setting.  
+- **LLM-as-a-Judge**: A feature where LLMs are used to evaluate the quality of LLM responses on an instance-by-instance basis, using customizable rubrics within the RAG setting.  
 
 - (In progress)**Graphical User Interface**: A GUI demo for intuitive usage, making the tool accessible even for those who are not deeply familiar with command-line interfaces.  
 
@@ -22,7 +22,12 @@ LRAGE is developed to address the unique challenges that Legal AI researchers fa
 1.	**Addition of Retriever and Reranker abstract classes**: LRAGE introduces [retriever](https://github.com/hoorangyee/LRAGE/blob/main/lrage/api/retriever.py) and [reranker](https://github.com/hoorangyee/LRAGE/blob/main/lrage/api/reranker.py) abstract classes in the [lrage/api/](https://github.com/hoorangyee/LRAGE/tree/main/lrage/api). These additions allow the process of building requests in the [api.task.Task](https://github.com/hoorangyee/LRAGE/blob/b24b7dc253fdfaa82cd926d1d1147f8a18ec69bf/lrage/api/task.py#L179) class’s [build_all_requests()](https://github.com/hoorangyee/LRAGE/blob/b24b7dc253fdfaa82cd926d1d1147f8a18ec69bf/lrage/api/task.py#L376) method to go through both retrieval and reranking steps, enhancing the evaluation process for RAG.  
 
 
-2.	**Extensible Retriever and Reranker implementations**: While maintaining the same structure as lm-evaluation-harness, LRAGE allows for the flexible integration of different retriever and reranker implementations. Just as lm-evaluation-harness provides an abstract [LM class](https://github.com/hoorangyee/LRAGE/blob/b24b7dc253fdfaa82cd926d1d1147f8a18ec69bf/lrage/api/model.py#L20) with implementations for libraries like HuggingFace (hf) and vLLM, LRAGE provides [pyserini_retriever](https://github.com/hoorangyee/LRAGE/blob/main/lrage/retrievers/pyserini_retriever.py) (powered by [Pyserini](https://github.com/castorini/pyserini)) in [lrage/retrievers/](https://github.com/hoorangyee/LRAGE/tree/main/lrage/retrievers) and [rerankers_reranker](https://github.com/hoorangyee/LRAGE/blob/main/lrage/rerankers/rerankers_reranker.py) (powered by [rerankers](https://github.com/AnswerDotAI/rerankers)) in [lrage/rerankers/](https://github.com/hoorangyee/LRAGE/tree/main/lrage/rerankers). This structure allows users to easily implement and integrate other retrievers or rerankers, such as those from [LlamaIndex](https://github.com/run-llama/llama_index), by simply extending the abstract classes.  
+2.	**Extensible Retriever and Reranker implementations**: While maintaining the same structure as lm-evaluation-harness, LRAGE allows for the flexible integration of different retriever and reranker implementations. Just as lm-evaluation-harness provides an abstract [LM class](https://github.com/hoorangyee/LRAGE/blob/b24b7dc253fdfaa82cd926d1d1147f8a18ec69bf/lrage/api/model.py#L20) with implementations for libraries like HuggingFace (hf) and vLLM, LRAGE provides [pyserini_retriever](https://github.com/hoorangyee/LRAGE/blob/main/lrage/retrievers/pyserini_retriever.py) (powered by [Pyserini](https://github.com/castorini/pyserini)) in [lrage/retrievers/](https://github.com/hoorangyee/LRAGE/tree/main/lrage/retrievers) and [rerankers_reranker](https://github.com/hoorangyee/LRAGE/blob/main/lrage/rerankers/rerankers_reranker.py) (powered by [rerankers](https://github.com/AnswerDotAI/rerankers)) in [lrage/rerankers/](https://github.com/hoorangyee/LRAGE/tree/main/lrage/rerankers). This structure allows users to easily implement and integrate other retrievers or rerankers, such as those from [LlamaIndex](https://github.com/run-llama/llama_index), by simply extending the abstract classes.
+
+3. **Integration of LLM-as-a-judge**: LRAGE introduces support for using language models as judges to evaluate RAG system outputs:  
+- A new JudgeTask class has been added to [lrage/api/task.py]([https://github.com/hoorangyee/LRAGE/blob/main/lrage/api/task.py](https://github.com/hoorangyee/LRAGE/blob/c46e039c56c343929bb38140c514b9486a9625d5/lrage/api/task.py#L1719)
+- Utilizes the existing generate_until() method from the LM class to obtain structured evaluation responses from language models
+- This addition enables automated evaluation of RAG outputs using LLMs as judges, complementing traditional metrics with more nuanced quality assessments
 
 ## Installation
 
@@ -46,6 +51,8 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
     lrage \
     --model hf \
     --model_args pretrained=meta-llama/Llama-3.1-8B \
+    --judge_model openai-chat-completions
+    --judge_model_args model=gpt-4o-mini
     --tasks abercrombie \
     --batch_size 8 \
     --device cuda \
@@ -60,16 +67,18 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
 
 ## Indexing
 
-**Note**: A simplified indexing feature will be provided in a future release. If you plan to use the pyserini retriever, please refer to [Pyserini's indexing documentation](https://github.com/castorini/pyserini/blob/master/docs/usage-index.md) for guidance in the meantime.  
+**Note**: A simplified indexing feature will be provided in a future release. For now, you have two options:  
+1. Use Pyserini's prebuilt indexes available out of the box
+2. Create your own index by following [Pyserini's indexing documentation](https://github.com/castorini/pyserini/blob/master/docs/usage-index.md)
 
 ## Roadmap
 
-- [ ] Implement LLM-as-a-judge functionality
+- [x] Implement LLM-as-a-judge functionality
+- [x] Update pyserini_retriever to support Pyserini prebuilt index
 - [ ] Develop a GUI Demo for easier access and visualization
 - [ ] Publish and share Pile-of-law chunks
 - [ ] Publish and share Pile-of-law BM25 index
 - [ ] Publish and share Pile-of-law embeddings
-- [ ] Update pyserini_retriever to support Pyserini prebuilt index
 - [ ] Implement a simplified indexing feature
 - [ ] Document more detailed usage instructions
 - [ ] Publish benchmark results obtained using LRAGE
