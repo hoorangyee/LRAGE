@@ -292,6 +292,24 @@ def setup_parser() -> argparse.ArgumentParser:
         default="",
         help="Comma separated string arguments for the reranker, e.g. `model_name_or_path=facebook/bart-large`",
     )
+    parser.add_argument(
+        "--judge_model",
+        type=str,
+        default="",
+        help="Name of the judge model to use for evaluation.",
+    )
+    parser.add_argument(
+        "--judge_model_args",
+        type=str,
+        default="",
+        help="Comma separated string arguments for the judge model, e.g. `pretrained=EleutherAI/pythia-160m,dtype=float32`",
+    )
+    parser.add_argument(
+        "--judge_device",
+        type=str,
+        default=None,
+        help="Device to use for the judge model (e.g. cuda, cuda:0, cpu).",
+    )
     return parser
 
 
@@ -428,11 +446,14 @@ def cli_evaluate(args: Union[argparse.Namespace, None] = None) -> None:
     results = evaluator.simple_evaluate(
         model=args.model,
         model_args=args.model_args,
+        judge_model=args.judge_model,
+        judge_model_args=args.judge_model_args,
         tasks=task_names,
         num_fewshot=args.num_fewshot,
         batch_size=args.batch_size,
         max_batch_size=args.max_batch_size,
         device=args.device,
+        judge_device=args.judge_device,
         use_cache=args.use_cache,
         limit=args.limit,
         check_integrity=args.check_integrity,

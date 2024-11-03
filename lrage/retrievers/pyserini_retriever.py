@@ -4,6 +4,7 @@ import json
 from pyserini.search.lucene import LuceneSearcher, LuceneImpactSearcher
 from pyserini.search.faiss import FaissSearcher, AutoQueryEncoder
 from pyserini.search.hybrid import HybridSearcher
+from pyserini.prebuilt_index_info import TF_INDEX_INFO, IMPACT_INDEX_INFO, FAISS_INDEX_INFO
 
 from lrage.api.registry import register_retriever
 from lrage.api.retriever import Retriever, QueryContext, RetrievedDocument
@@ -15,43 +16,50 @@ class PyseriniRetriever(Retriever):
         self,
         retriever_type: str,
         bm25_index_path: str,
+        sparse_index_path: Optional[str] = None,
         faiss_index_path: Optional[str] = None,
         encoder_path: Optional[str] = None,
     ) -> None:
         self.retriever_type = retriever_type
-        self.doc_searcher = LuceneSearcher(bm25_index_path)
+
+        if bm25_index_path is None:
+            raise ValueError("All retrievers require a bm25_index_path")
+        self.bm25_searcher = LuceneSearcher.from_prebuilt_index(bm25_index_path) if bm25_index_path in TF_INDEX_INFO else LuceneSearcher(bm25_index_path)
+
         self.searcher = self._initialize_searcher(
-            retriever_type, bm25_index_path, faiss_index_path, encoder_path
+            retriever_type, sparse_index_path, faiss_index_path, encoder_path
         )
 
     def _initialize_searcher(
         self,
         retriever_type: str,
-        bm25_index_path: str,
+        sparse_index_path: Optional[str],
         faiss_index_path: Optional[str],
         encoder_path: Optional[str],
     ):
+
         if retriever_type == 'bm25':
-            return self.doc_searcher
+            return self.bm25_searcher
         elif retriever_type == 'sparse':
-            if encoder_path is None:
-                raise ValueError("SparseRetriever requires an encoder_path")
-            return LuceneImpactSearcher(bm25_index_path, encoder_path)
+            if sparse_index_path is None or encoder_path is None:
+                raise ValueError("SparseRetriever requires an sparse_index_path and encoder_path")
+            return LuceneImpactSearcher.from_prebuilt_index(sparse_index_path) if sparse_index_path in IMPACT_INDEX_INFO else LuceneImpactSearcher(sparse_index_path)
         elif retriever_type == 'dense':
             if faiss_index_path is None or encoder_path is None:
                 raise ValueError("DenseRetriever requires faiss_index_path and encoder_path")
-            return FaissSearcher(faiss_index_path, AutoQueryEncoder(encoder_path))
+            return (FaissSearcher.from_prebuilt_index(faiss_index_path, AutoQueryEncoder(encoder_path)) if faiss_index_path in FAISS_INDEX_INFO.keys() 
+                        else FaissSearcher(faiss_index_path, AutoQueryEncoder(encoder_path)))
         elif retriever_type == 'hybrid':
             if faiss_index_path is None or encoder_path is None:
                 raise ValueError("HybridRetriever requires faiss_index_path and encoder_path")
-            dense_searcher = FaissSearcher(faiss_index_path, AutoQueryEncoder(encoder_path))
-            sparse_searcher = self.doc_searcher
-            return HybridSearcher(dense_searcher, sparse_searcher)
+            dense_searcher = (FaissSearcher.from_prebuilt_index(faiss_index_path, AutoQueryEncoder(encoder_path)) if faiss_index_path in FAISS_INDEX_INFO.keys() 
+                                else FaissSearcher(faiss_index_path, AutoQueryEncoder(encoder_path)))
+            return HybridSearcher(dense_searcher, self.bm25_searcher)
         else:
             raise ValueError(f"Unknown retriever type: {retriever_type}")
 
     def _get_docs(self, doc_ids: List[str]) -> List[dict]:
-        docs = [self.doc_searcher.doc(doc_id) for doc_id in doc_ids]
+        docs = [self.bm25_searcher.doc(doc_id) for doc_id in doc_ids]
         return [
             json.loads(doc.raw()) 
             for doc in docs 

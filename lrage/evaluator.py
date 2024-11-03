@@ -46,11 +46,14 @@ if TYPE_CHECKING:
 def simple_evaluate(
     model,
     model_args: Optional[Union[str, dict]] = None,
+    judge_model: Optional[str] = None,
+    judge_model_args: Optional[Union[str, dict]] = None,
     tasks: Optional[List[Union[str, dict, object]]] = None,
     num_fewshot: Optional[int] = None,
     batch_size: Optional[int] = None,
     max_batch_size: Optional[int] = None,
     device: Optional[str] = None,
+    judge_device: Optional[str] = None,
     use_cache: Optional[str] = None,
     cache_requests: bool = False,
     rewrite_requests_cache: bool = False,
@@ -214,6 +217,38 @@ def simple_evaluate(
         eval_logger.info("Using pre-initialized model")
         lm = model
 
+    if judge_model != "":
+        if isinstance(judge_model, str):
+            if judge_model_args is None:
+                eval_logger.warning("judge_model_args not specified. Using defaults.")
+                judge_model_args = ""
+
+            if isinstance(judge_model_args, dict):
+                eval_logger.info(
+                    f"Initializing {judge_model} judge model, with arguments: {judge_model_args}"
+                )
+                judge_lm = lrage.api.registry.get_model(judge_model).create_from_arg_obj(
+                    judge_model_args,
+                    {
+                        "batch_size": batch_size,
+                        "max_batch_size": max_batch_size,
+                        "device": judge_device,
+                    },
+                )
+
+            else:
+                eval_logger.info(
+                    f"Initializing {judge_model} model, with arguments: {simple_parse_args_string(judge_model_args)}"
+                )
+                judge_lm = lrage.api.registry.get_model(judge_model).create_from_arg_string(
+                    judge_model_args,
+                    {
+                        "batch_size": batch_size,
+                        "max_batch_size": max_batch_size,
+                        "device": judge_device,
+                    },
+                )
+
     if retrieve_docs:
         if isinstance(retriever, str):
             if retriever_args is None:
@@ -313,6 +348,7 @@ def simple_evaluate(
 
     results = evaluate(
         lm=lm,
+        judge_lm=judge_lm,
         task_dict=task_dict,
         limit=limit,
         cache_requests=cache_requests,
@@ -378,6 +414,7 @@ def simple_evaluate(
 def evaluate(
     lm: "LM",
     task_dict,
+    judge_lm: Optional["LM"] = None,
     limit: Optional[int] = None,
     cache_requests: bool = False,
     rewrite_requests_cache: bool = False,
@@ -542,9 +579,14 @@ def evaluate(
             )
             for doc_id, doc in doc_iterator:
                 requests = instances_by_doc_id[doc_id]
-                metrics = task.process_results(
-                    doc, [req.filtered_resps[filter_key] for req in requests]
-                )
+                if task.config.doc_to_rubric is not None:
+                    metrics = task.process_results(
+                        doc, [req.filtered_resps[filter_key] for req in requests], judge_lm
+                    )
+                else:
+                    metrics = task.process_results(
+                        doc, [req.filtered_resps[filter_key] for req in requests]
+                    )
                 if log_samples:
                     target = task.doc_to_target(doc)
                     example = {

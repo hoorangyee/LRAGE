@@ -19,13 +19,14 @@ from typing import (
     Tuple,
     Union,
 )
-import time
+import json
 
 import datasets
 import numpy as np
 from tqdm import tqdm
 
 from lrage import utils
+from lrage.api.model import LM
 from lrage.api import samplers
 from lrage.api.instance import Instance, OutputType
 from lrage.api.metrics import bits_per_byte, mean, weighted_perplexity
@@ -37,7 +38,7 @@ from lrage.api.registry import (
     get_metric_aggregation,
     is_higher_better,
 )
-from lrage.api.retriever import Retriever, QueryContext
+from lrage.api.retriever import Retriever
 from lrage.api.reranker import Reranker
 from lrage.caching.cache import load_from_cache, save_to_cache
 from lrage.filters import build_filter_ensemble
@@ -77,6 +78,7 @@ class TaskConfig(dict):
     # see docs/advanced_task_guide.md for more info
     process_docs: Optional[Callable] = None
     doc_to_query: Optional[Union[Callable, str]] = None
+    doc_to_rubric: Optional[Union[Callable, str]] = None
     doc_to_text: Optional[Union[Callable, str]] = None
     doc_to_target: Optional[Union[Callable, str]] = None
     doc_to_choice: Optional[Union[Callable, str, dict, list]] = None
@@ -92,6 +94,7 @@ class TaskConfig(dict):
     metric_list: Optional[list] = None
     output_type: OutputType = "generate_until"
     generation_kwargs: Optional[dict] = None
+    judge_generation_kwargs: Optional[dict] = None
     repeats: int = 1
     filter_list: Optional[Union[str, list]] = None
     should_decontaminate: bool = False
@@ -371,6 +374,10 @@ class Task(abc.ABC):
 
     @abc.abstractmethod
     def doc_to_query(self, doc):
+        pass
+
+    @abc.abstractmethod
+    def doc_to_rubric(self, doc):
         pass
 
     def build_all_requests(
@@ -1712,3 +1719,135 @@ class PerplexityTask(Task):
     def count_words(cls, doc) -> int:
         """Downstream tasks with custom word boundaries should override this!"""
         return len(re.split(r"\s+", doc))
+
+class JudgeTask(ConfigurableTask):
+    def doc_to_rubric(self, doc: Any) -> Optional[str]:
+        if self.config.doc_to_rubric is None:
+            return None
+            
+        if isinstance(self.config.doc_to_rubric, str):
+            if self.config.doc_to_rubric in self.features:
+                return doc[self.config.doc_to_rubric]
+            return utils.apply_template(self.config.doc_to_rubric, doc)
+        elif callable(self.config.doc_to_rubric):
+            return self.config.doc_to_rubric(doc)
+        return None
+    
+    def process_results(self, doc, results, lm: "LM"):
+        if callable(self.config.process_results):
+            return self.config.process_results(doc, results)
+        
+        question = self.doc_to_text(doc)
+        target = self.doc_to_target(doc) if self.doc_to_target(doc).strip() != "" else "NO_REFERENCE"
+        generation = results[0]
+        rubric = self.doc_to_rubric(doc)
+        try:
+            max_score = next(
+                item['max_score'] 
+                for item in self.config.metric_list 
+                if item['metric'] == 'LLM-Eval'
+            )
+        except StopIteration:
+            max_score = 5
+
+        judge_req = self._default_prompt_templates()["single_response"].format(
+            question=question,
+            response=generation,
+            reference=target,
+            rubric=rubric,
+            max_score=max_score,
+        ).strip()
+
+        judge_inst = Instance(
+            request_type="generate_until",
+            doc=doc,
+            arguments=(judge_req, self.config.judge_generation_kwargs),
+            idx=0,
+        )
+
+        judge_results = getattr(lm, "generate_until")([judge_inst])[0]
+
+        dict_judge_results = judge_results[judge_results.find('{'):]
+        json_judge_results = json.loads(dict_judge_results.strip())
+
+        score = json_judge_results["Rating"]
+        explanation = json_judge_results["Explanation"]
+
+        return {
+            "LLM-Eval": score,
+        }
+
+    def _default_prompt_templates(self) -> Dict[str, str]:
+        return {
+            "single_response": """
+[Question]
+{question}
+
+[Response to Evaluate]
+{response}
+
+[Ground Truth]
+{reference}
+
+[Score Rubric]
+{rubric}
+
+Rate the response based on the above criteria on a scale of 0-{max_score}.
+Provide your rating and explanation in the following JSON format:
+{{
+    "Explanation": "(detailed explanation)",
+    "Rating": "(score as integer)",
+}}
+""",
+            "comparison": """
+[Question]
+{question}
+
+[Response A]
+{response_a}
+
+[Response B]
+{response_b}
+
+[Score Rubric]
+{rubric}
+
+Compare the two responses and rate them based on the criteria.
+Provide your evaluation in the following JSON format:
+{{
+    "Explanation": "(detailed comparison)",
+    "Rating_A": "(score as integer)",
+    "Rating_B": "(score as integer)",
+    "Preferred": "(A or B or Tie)",
+    "Reasoning": "(explanation of preference)"
+}}
+""",
+            "multi_rubric": """
+[Question]
+{question}
+
+[Response]
+{response}
+
+[Ground Truth]
+{reference}
+
+[Score Rubric]
+{rubric_list}
+
+Evaluate the response for each criterion on a scale of 0-{max_score}.
+Provide your evaluation in the following JSON format:
+{{
+    "Overall_Explanation": "(general assessment)",
+    "Rubric_Scores": {{
+        "rubric_1": {{"score": "(integer)", "explanation": "(reasoning)"}},
+        "rubric_2": {{"score": "(integer)", "explanation": "(reasoning)"}},
+        ...
+    }},
+    "Total_Score": "(average score)"
+}}
+"""
+    }
+
+    
+    

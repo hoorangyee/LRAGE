@@ -732,7 +732,6 @@ class HFLM(TemplateLM):
         else:
             special_tokens_kwargs = {"add_special_tokens": add_special_tokens}
 
-        # print(f"query: \n{string}")
         encoding = self.tokenizer.encode(string, **special_tokens_kwargs)
 
         # left-truncate the encoded context to be at most `left_truncate_len` tokens long
@@ -756,7 +755,6 @@ class HFLM(TemplateLM):
         if self.AUTO_MODEL_CLASS == transformers.AutoModelForCausalLM:
             add_special_tokens = {"add_special_tokens": False or self.add_bos_token}
 
-        # print(f"query: \n{strings}")
         encoding = self.tokenizer(
             strings,
             truncation=truncation,
