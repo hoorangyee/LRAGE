@@ -102,7 +102,7 @@ The basic usage follows the [lm-evaluation-harness](https://github.com/EleutherA
 
 ## Contributing
 
-Contributions and community engagement are welcome! We value your input in making this project better.
+Contributions and community engagement are welcome! We value your input in making this project better🤗.
 
 ## Citation
 
