@@ -1,5 +1,5 @@
 
-# LRAGE: Legal Retrieval Augmented Generation Evaluation Tool
+# ⚖️ LRAGE: Legal Retrieval Augmented Generation Evaluation Tool
 
 LRAGE (Legal Retrieval Augmented Generation Evaluation, pronounced as 'large') is an open-source toolkit designed to evaluate Large Language Models (LLMs) in a Retrieval-Augmented Generation (RAG) setting, specifically tailored for the legal domain.  
 
