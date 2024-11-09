@@ -100,6 +100,10 @@ The basic usage follows the [lm-evaluation-harness](https://github.com/EleutherA
 - [ ] Document more detailed usage instructions
 - [ ] Publish benchmark results obtained using LRAGE
 
+## Contributing
+
+Contributions and community engagement are welcome! We value your input in making this project better.
+
 ## Citation
 
 ```
