@@ -83,6 +83,10 @@ The basic usage follows the [lm-evaluation-harness](https://github.com/EleutherA
 1. Use Pyserini's prebuilt indexes available out of the box
 2. Create your own index by following [Pyserini's indexing documentation](https://github.com/castorini/pyserini/blob/master/docs/usage-index.md)
 
+## Pre-compiled indexes for the legal domain
+
+**Note**: We will soon share the pre-compiled Pile-of-law BM25 index and a mini-index containing approximately 1/10 of the data. Additionally, we plan to provide pre-compiled indexes for other legal domain document collections that can be used in RAG settings.
+
 ## Roadmap
 
 - [x] Implement LLM-as-a-judge functionality
