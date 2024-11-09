@@ -96,7 +96,7 @@ The basic usage follows the [lm-evaluation-harness](https://github.com/EleutherA
 - [ ] Publish and share Pile-of-law BM25 index
 - [ ] Publish and share Pile-of-law embeddings
 - [ ] Implement a simplified indexing feature in GUI
-- [ ] Support for more arguments in the GUI
+- [ ] Support for additional evaluation arguments in the GUI
 - [ ] Document more detailed usage instructions
 - [ ] Publish benchmark results obtained using LRAGE
 
