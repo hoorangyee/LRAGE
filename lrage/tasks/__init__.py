@@ -5,7 +5,7 @@ from functools import partial
 from typing import Dict, List, Mapping, Optional, Union
 
 from lrage import utils
-from lrage.api.task import ConfigurableTask, JudgeTask, Task
+from lrage.api.task import ConfigurableTask, Task
 
 
 class TaskManager:
@@ -163,11 +163,8 @@ class TaskManager:
             if self._config_is_python_task(config):
                 task_object = config["class"]()
             else:
-                config = self._process_alias(config, group=group)
-                if config.get("doc_to_rubric", None) is not None:
-                    task_object = JudgeTask(config=config)
-                else:    
-                    task_object = ConfigurableTask(config=config)
+                config = self._process_alias(config, group=group)   
+                task_object = ConfigurableTask(config=config)
             if group is not None:
                 task_object = (group, task_object)
             return {task: task_object}

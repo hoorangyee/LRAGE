@@ -265,7 +265,7 @@ def setup_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--retriever",
         type=str,
-        default="",
+        default=None,
         help="Type of the retriever to use for document retrieval.",
     )
     parser.add_argument(
@@ -283,7 +283,7 @@ def setup_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--reranker",
         type=str,
-        default="",
+        default=None,
         help="Type of the reranker to use for document reranking.",
     )
     parser.add_argument(
@@ -295,7 +295,7 @@ def setup_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--judge_model",
         type=str,
-        default="",
+        default=None,
         help="Name of the judge model to use for evaluation.",
     )
     parser.add_argument(
@@ -529,7 +529,7 @@ def cli_evaluate(args: Union[argparse.Namespace, None] = None) -> None:
         if args.wandb_args:
             # Tear down wandb run once all the logging is done.
             wandb_logger.run.finish()
-
+        
 
 if __name__ == "__main__":
     cli_evaluate()

@@ -217,7 +217,7 @@ def simple_evaluate(
         eval_logger.info("Using pre-initialized model")
         lm = model
 
-    if judge_model != "":
+    if judge_model is not None:
         if isinstance(judge_model, str):
             if judge_model_args is None:
                 eval_logger.warning("judge_model_args not specified. Using defaults.")
@@ -248,6 +248,8 @@ def simple_evaluate(
                         "device": judge_device,
                     },
                 )
+    else:
+        judge_lm = None
 
     if retrieve_docs:
         if isinstance(retriever, str):
@@ -345,6 +347,7 @@ def simple_evaluate(
             chat_template=lm.chat_template if apply_chat_template else None,
             fewshot_as_multiturn=fewshot_as_multiturn,
         )
+
 
     results = evaluate(
         lm=lm,
