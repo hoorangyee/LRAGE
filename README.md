@@ -70,6 +70,10 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
    cd lrage
    python lrage_gui.py
    ```
+
+## Basic Usage
+The basic usage follows the [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) documentation. Therefore, we recommend referring to the lm-evaluation-harness documentation for detailed guidance.  
+**Note**: Detailed documentation for RAG settings will be added soon. For now, please refer to the Quick Start guide.  
    
 ## Indexing
 
