@@ -1500,6 +1500,10 @@ class ConfigurableTask(Task):
                     else {}
                 ),
                 **({"balanced_acc": (gold, pred)} if "balanced_acc" in use_metric else {}),
+                **({"citation_acc": (gold, pred)} if "citation_acc" in use_metric else {}),
+                **({"definition_extraction_acc": (gold, pred)} if "definition_extraction_acc" in use_metric else {}),
+                **({"sara_numeric_acc": (gold, pred)} if "sara_numeric_acc" in use_metric else {}),
+
             }
 
             if "acc_mutual_info" in use_metric:
@@ -1578,7 +1582,7 @@ class ConfigurableTask(Task):
                 elif self.multiple_target:
                     # in the case where we have multiple targets,
                     # return true if any are true
-                    # TODO: this may break for multipLe_target, non zero-or-1 metrics
+                    # TODO: this may break for multiple_target, non zero-or-1 metrics
                     scores = []
                     if not isinstance(gold, list):
                         # sometimes, a multiple_target dataset has exceptions where one doc has only one string answer

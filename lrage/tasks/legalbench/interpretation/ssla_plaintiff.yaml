@@ -1,6 +1,6 @@
 dataset_name: ssla_plaintiff
 dataset_path: nguha/legalbench
-doc_to_target: '{{answer}}'
+doc_to_target: !function utils.doc_to_target_ssla
 group: legalbench_interpretation
 group_alias: interpretation
 include: ../prompt_templates/ssla_plaintiff/base_prompt.yaml
