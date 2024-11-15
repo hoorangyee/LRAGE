@@ -187,10 +187,6 @@ def sara_numeric_acc(items):
 
 @register_aggregation("ssla_f1")
 def ssla_f1(items):
-    print(f"items: {items}")
-    print(f"ans: {list(zip(*items))[0]}")
-    print(f"gen: {list(zip(*items))[1]}")
-    print(f"types: {type(list(zip(*items))[0])}, {type(list(zip(*items))[1])}")
     answers = list(zip(*items))[0]
     generations = list(zip(*items))[1]
 
