@@ -442,6 +442,7 @@ class Task(abc.ABC):
 
         num_docs = len(doc_id_docs)
 
+        query_contexts_dict = {}
         if retrieve_docs:
             eval_logger.info(f"Retrieving docs for {self.config.task} on rank {rank}...")
             # Prepare queries
@@ -466,6 +467,9 @@ class Task(abc.ABC):
                 ]
                 query_contexts = reranked_contexts
 
+            for qid, context in zip(query_ids, query_contexts):
+                query_contexts_dict[int(qid)] = context
+
         for doc_id, doc in tqdm(
             doc_id_docs,
             total=num_docs,
@@ -481,7 +485,7 @@ class Task(abc.ABC):
             )
 
             if retrieve_docs:
-                doc_context = query_contexts[doc_id]
+                doc_context = query_contexts_dict[doc_id]
                 retrieved_context = doc_context.build_context()
             else:
                 retrieved_context = ""
