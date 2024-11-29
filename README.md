@@ -46,7 +46,7 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
 
 2. Choose one of the following methods to run:  
 
-   A. Run the evaluation script:
+   A. Run the evaluation script in CLI:
    ```bash
    lrage \
    --model hf \
