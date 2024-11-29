@@ -102,11 +102,7 @@ def eval_tasks(
         system_instruction = None,
         hf_hub_log_args = None,
         log_samples = False,
-        output_path = None,
-        random_seed = 0,
-        numpy_random_seed = 1234,
-        torch_random_seed = 1234,
-        fewshot_random_seed = 1234):
+        output_path = None,):
     
     if use_cache == "":
         use_cache = None
@@ -148,10 +144,6 @@ def eval_tasks(
         reranker_args=reranker_args,
         batch_size=batch_size,
         device=device,
-        random_seed=random_seed,
-        numpy_random_seed=numpy_random_seed,
-        torch_random_seed=torch_random_seed,
-        fewshot_random_seed=fewshot_random_seed,
         evaluation_tracker=evaluation_tracker,
     )
 
@@ -183,41 +175,35 @@ with gr.Blocks(title="⚖️ LRAGE") as demo:
     with gr.Tab(label='evaluation'):
         with gr.Row():
             with gr.Column():
-                model = gr.Dropdown(
-                    label="Model type", 
-                    choices=[
-                        "anthropic", 
-                        "anthropic-chat-completions", 
-                        "huggingface", 
-                        "mamba_ssm", 
-                        "nemo_lm", 
-                        "sparseml", 
-                        "neuronx", 
-                        "openai-completions", 
-                        "openai-chat-completions", 
-                        "openvino", 
-                        "textsynth", 
-                        "vllm"])
-                model_args = gr.Textbox(
-                    label="Model args", 
-                    placeholder="e.g. pretrained=meta-llama/Meta-Llama-3-8B-Instruct,trust_remote_code=True,...",
-                    lines=1)
-                api_key_name = gr.Textbox(
-                    label="API key name",
-                    placeholder="Enter API key name for API models",
-                    lines=1)
-                api_key = gr.Textbox(
-                    label="API key",
-                    placeholder="Enter API key for API models",
-                    lines=1)
-
-                with gr.Row():
-                    tasks = gr.Dropdown(
-                        all_tasks, 
-                        label="Task", 
-                        multiselect=True)
-
-                with gr.Row():
+                with gr.Column():
+                    model = gr.Dropdown(
+                        label="Model type", 
+                        choices=[
+                            "anthropic", 
+                            "anthropic-chat-completions", 
+                            "huggingface", 
+                            "mamba_ssm", 
+                            "nemo_lm", 
+                            "sparseml", 
+                            "neuronx", 
+                            "openai-completions", 
+                            "openai-chat-completions", 
+                            "openvino", 
+                            "textsynth", 
+                            "vllm"])
+                    model_args = gr.Textbox(
+                        label="Model args", 
+                        placeholder="e.g. pretrained=meta-llama/Meta-Llama-3-8B-Instruct,trust_remote_code=True,...",
+                        lines=1)
+                    api_key_name = gr.Textbox(
+                        label="API key name",
+                        placeholder="Enter API key name for API models",
+                        lines=1)
+                    api_key = gr.Textbox(
+                        label="API key",
+                        placeholder="Enter API key for API models",
+                        lines=1)
+                with gr.Column():
                     device = gr.Dropdown(
                         devices, 
                         value="cpu",
@@ -234,105 +220,6 @@ with gr.Blocks(title="⚖️ LRAGE") as demo:
                         label="max batch size", 
                         scale=1)
                 
-                with gr.Row():
-                    random_seed = gr.Number(
-                        value=0,
-                        label="random seed",
-                        scale=1,
-                        min_width=100)
-                    numpy_random_seed = gr.Number(
-                        value=1234,
-                        label="numpy seed",
-                        scale=1,
-                        min_width=100)
-                    torch_random_seed = gr.Number(
-                        value=1234,
-                        label="torch seed",
-                        scale=1,
-                        min_width=100)
-                    fewshot_random_seed = gr.Number(
-                        value=1234,
-                        label="fewshot seed",
-                        scale=1,
-                        min_width=100)
-
-                with gr.Row():
-                    with gr.Row():
-                        num_fewshot = gr.Number(
-                            value=0,
-                            minimum=0,
-                            label="num_fewshot")
-                        fewshot_as_multiturn = gr.Checkbox(
-                            value=False, 
-                            label="fewshot_as_multiturn", 
-                            interactive=False)
-
-                        num_fewshot.change(
-                            toggle_interactive,
-                            inputs=[num_fewshot],
-                            outputs=[fewshot_as_multiturn]
-                        )
-                    
-                    with gr.Row():
-                        apply_chat_template = gr.Checkbox(
-                            value=False,
-                            label="apply_chat_template")
-                        template_name = gr.Textbox(
-                            label="template_name", 
-                            placeholder="If not provided, use default template.",
-                            lines=1, 
-                            interactive=False)
-
-                        apply_chat_template.change(
-                            toggle_interactive,
-                            inputs=[apply_chat_template],
-                            outputs=[template_name]
-                        )
-
-                gen_kwargs = gr.Textbox(
-                    label="gen_kwargs", 
-                    placeholder="e.g. max_length=100,temperature=0.5,...",
-                    lines=1)
-                
-                system_instruction = gr.Textbox(
-                    label="system_instruction",
-                    placeholder="Enter system instruction",
-                    lines=4)
-
-                with gr.Row():
-                    use_cache = gr.Textbox(
-                        value=None,
-                        label="use_cache", 
-                        placeholder="Enter cache path",
-                        lines=1)
-                    cache_requests = gr.Dropdown(
-                        ["true", "refresh" , "delete"], 
-                        value=None,
-                        label="cache_requests",  
-                        interactive=False)
-
-                    use_cache.change(
-                        toggle_interactive,
-                        inputs=[use_cache],
-                        outputs=[cache_requests]
-                    )
-
-                with gr.Column():
-                    output_path = gr.Textbox(
-                        label="output path", 
-                        lines=1
-                        )
-                    log_samples = gr.Checkbox(
-                        value=False,
-                        label="log_samples",
-                        interactive=False
-                        )
-
-                    output_path.change(
-                        toggle_interactive,
-                        inputs=[output_path],
-                        outputs=[log_samples]
-                    )
                 with gr.Group():
                     with gr.Column():
                         retrieve_docs = gr.Checkbox(
@@ -358,7 +245,7 @@ with gr.Blocks(title="⚖️ LRAGE") as demo:
                             inputs=[retrieve_docs],
                             outputs=[retriever, top_k, retriever_args]
                         )
-
+                
                 with gr.Column():
                     rerank = gr.Checkbox(
                         value=False,
@@ -408,10 +295,98 @@ with gr.Blocks(title="⚖️ LRAGE") as demo:
                     placeholder="Enter comma separated key=value pairs",
                     lines=1)
 
+            with gr.Column():
+                with gr.Row():
+                    tasks = gr.Dropdown(
+                        all_tasks, 
+                        label="Task", 
+                        multiselect=True)
+                
+                gen_kwargs = gr.Textbox(
+                    label="gen_kwargs",
+                    placeholder="e.g. max_length=100,temperature=0.5,...",
+                    lines=1)
+                
+                with gr.Row():
+                    
+                    with gr.Row():
+                        num_fewshot = gr.Number(
+                            value=0,
+                            minimum=0,
+                            label="num_fewshot")
+                        fewshot_as_multiturn = gr.Checkbox(
+                            value=False, 
+                            label="fewshot_as_multiturn", 
+                            interactive=False)
+
+                        num_fewshot.change(
+                            toggle_interactive,
+                            inputs=[num_fewshot],
+                            outputs=[fewshot_as_multiturn]
+                        )
+                    
+                    with gr.Row():
+                        apply_chat_template = gr.Checkbox(
+                            value=False,
+                            label="apply_chat_template")
+                        template_name = gr.Textbox(
+                            label="template_name", 
+                            placeholder="If not provided, use default template.",
+                            lines=1, 
+                            interactive=False)
+
+                        apply_chat_template.change(
+                            toggle_interactive,
+                            inputs=[apply_chat_template],
+                            outputs=[template_name]
+                        )
+                
+                system_instruction = gr.Textbox(
+                    label="system_instruction",
+                    placeholder="Enter system instruction",
+                    lines=4)
+
+                with gr.Row():
+                    use_cache = gr.Textbox(
+                        value=None,
+                        label="use_cache", 
+                        placeholder="Enter cache path",
+                        lines=1)
+                    cache_requests = gr.Dropdown(
+                        ["true", "refresh" , "delete"], 
+                        value=None,
+                        label="cache_requests",  
+                        interactive=False)
+
+                    use_cache.change(
+                        toggle_interactive,
+                        inputs=[use_cache],
+                        outputs=[cache_requests]
+                    )
+
+                with gr.Column():
+                    output_path = gr.Textbox(
+                        label="output path", 
+                        lines=1
+                        )
+                    log_samples = gr.Checkbox(
+                        value=False,
+                        label="log_samples",
+                        interactive=False
+                        )
+
+                    output_path.change(
+                        toggle_interactive,
+                        inputs=[output_path],
+                        outputs=[log_samples]
+                    )
+
+                
+
                 eval_button = gr.Button("Evlaute")
 
-            with gr.Column():
-                results = gr.DataFrame(initial_df, label="Results")
+                with gr.Column():
+                    results = gr.DataFrame(initial_df, label="Results")
 
             eval_button.click(
                 eval_tasks,
@@ -442,10 +417,6 @@ with gr.Blocks(title="⚖️ LRAGE") as demo:
                     hf_hub_log_args,
                     log_samples,
                     output_path,
-                    random_seed,
-                    numpy_random_seed,
-                    torch_random_seed,
-                    fewshot_random_seed
                 ],
                 outputs=[results]
             )
