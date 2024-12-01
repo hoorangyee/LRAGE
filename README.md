@@ -26,6 +26,10 @@ LRAGE is developed to address the unique challenges that Legal AI researchers fa
 
 3. **Integration of LLM-as-a-judge**: LRAGE modifies [ConfigurableTask.process_results](https://github.com/hoorangyee/LRAGE/blob/479534d59a95b2b0c7cc37fd4c0db574418c61da/lrage/api/task.py#L1528) to support 'LLM-Eval' metrics, enabling a more nuanced evaluation of RAG outputs by utilizing language models as judges.
 
+## Prerequisites
+
+- JDK 21 is required to use the Pyserini retriever
+
 ## Installation
 
 1. Clone the repository:
