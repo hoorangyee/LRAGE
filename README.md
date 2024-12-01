@@ -51,15 +51,13 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
    lrage \
    --model hf \
    --model_args pretrained=meta-llama/Llama-3.1-8B \
-   --judge_model openai-chat-completions \
-   --judge_model_args model=gpt-4o-mini \
    --tasks abercrombie \
    --batch_size 8 \
    --device cuda \
    --retrieve_docs \
    --top_k 3 \
    --retriever pyserini \
-   --retriever_args retriever_type=bm25,bm25_index_path=YOUR_INDEX_PATH \
+   --retriever_args retriever_type=bm25,bm25_index_path=msmarco-v1-passage \
    --rerank \
    --reranker rerankers \
    --reranker_args reranker_type=colbert
