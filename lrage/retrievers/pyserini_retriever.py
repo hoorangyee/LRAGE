@@ -60,11 +60,11 @@ class PyseriniRetriever(Retriever):
 
     def _get_docs(self, doc_ids: List[str]) -> List[dict]:
         docs = [self.bm25_searcher.doc(doc_id) for doc_id in doc_ids]
-        return [
-            json.loads(doc.raw()) 
-            for doc in docs 
-            if doc is not None
-        ]
+        try:
+            docs = [json.loads(doc.raw()) for doc in docs]
+        except json.JSONDecodeError:
+            docs = [{'id': doc_id, 'contents': doc.raw()} for doc_id, doc in zip(doc_ids, docs)]
+        return docs
 
     def retrieve(self, query: str, top_k: int = 3) -> QueryContext:
         """
