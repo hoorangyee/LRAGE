@@ -1,0 +1,15 @@
+dataset_name: international_citizenship_questions
+dataset_path: hoorangyee/legalbench_mini
+doc_to_choice:
+- 'Yes'
+- 'No'
+doc_to_target: '{{answer}}'
+include: ../../prompt_templates/international_citizenship_questions/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: international_citizenship_questions_mini
+test_split: test
+training_split: train

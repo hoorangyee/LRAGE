@@ -1,0 +1,6 @@
+group: legalbench_mini
+task:
+  - legalbench_mini_interpretation
+  - legalbench_mini_issue
+  - legalbench_mini_rhetorical-understanding
+  - legalbench_mini_rule

@@ -1,0 +1,17 @@
+dataset_name: canada_tax_court_outcomes
+dataset_path: hoorangyee/legalbench_mini
+doc_to_choice:
+- allowed
+- dismissed
+- other
+doc_to_query: text
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/canada_tax_court_outcomes/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: canada_tax_court_outcomes_mini
+test_split: test
+training_split: train

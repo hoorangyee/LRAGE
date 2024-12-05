@@ -1,0 +1,16 @@
+dataset_name: definition_classification
+dataset_path: hoorangyee/legalbench_mini
+doc_to_choice:
+- 'Yes'
+- 'No'
+doc_to_query: text
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/definition_classification/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: definition_classification_mini
+test_split: test
+training_split: train

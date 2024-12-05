@@ -1,0 +1,15 @@
+dataset_name: cuad_source_code_escrow
+dataset_path: hoorangyee/legalbench_mini
+doc_to_choice:
+- 'Yes'
+- 'No'
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/cuad_source_code_escrow/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: cuad_source_code_escrow_mini
+test_split: test
+training_split: train

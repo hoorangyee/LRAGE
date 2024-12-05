@@ -1,0 +1,21 @@
+dataset_name: maud_initial_matching_rights_period_(ftr)
+dataset_path: hoorangyee/legalbench_mini
+doc_to_choice:
+- A
+- B
+- C
+- D
+- E
+- F
+- G
+- H
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/maud_initial_matching_rights_period_(ftr)/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: maud_initial_matching_rights_period_(ftr)_mini
+test_split: test
+training_split: train
