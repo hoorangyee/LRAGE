@@ -12,8 +12,6 @@ doc_to_choice:
 - I
 - J
 doc_to_target: '{{answer}}'
-group: legalbench_interpretation
-group_alias: interpretation
 include: ../prompt_templates/maud_cor_standard_(superior_offer)/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc

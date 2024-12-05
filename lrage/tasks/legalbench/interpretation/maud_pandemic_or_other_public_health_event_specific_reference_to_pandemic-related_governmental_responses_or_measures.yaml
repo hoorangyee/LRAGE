@@ -4,8 +4,6 @@ doc_to_choice:
 - A
 - B
 doc_to_target: '{{answer}}'
-group: legalbench_interpretation
-group_alias: interpretation
 include: ../prompt_templates/maud_pandemic_or_other_public_health_event_specific_reference_to_pandemic-related_governmental_responses_or_measures/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc

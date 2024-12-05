@@ -4,8 +4,6 @@ doc_to_choice:
 - Entailment
 - Contradiction
 doc_to_target: '{{answer}}'
-group: legalbench_interpretation
-group_alias: interpretation
 include: ../prompt_templates/sara_entailment/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc

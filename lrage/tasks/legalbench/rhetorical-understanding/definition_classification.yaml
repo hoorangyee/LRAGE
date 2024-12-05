@@ -5,8 +5,6 @@ doc_to_choice:
 - 'No'
 doc_to_query: text
 doc_to_target: '{{answer}}'
-group: legalbench_rhetorical_understanding
-group_alias: rhetorical_understanding
 include: ../prompt_templates/definition_classification/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc

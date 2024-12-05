@@ -4,8 +4,6 @@ doc_to_choice:
 - 'Yes'
 - 'No'
 doc_to_target: '{{answer}}'
-group: legalbench_interpretation
-group_alias: interpretation
 include: ../prompt_templates/cuad_non-disparagement/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc

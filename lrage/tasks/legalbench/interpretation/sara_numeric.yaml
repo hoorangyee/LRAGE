@@ -1,8 +1,6 @@
 dataset_name: sara_numeric
 dataset_path: nguha/legalbench
 doc_to_target: '{{answer}}'
-group: legalbench_interpretation
-group_alias: interpretation
 include: ../prompt_templates/sara_numeric/base_prompt.yaml
 metric_list:
 - aggregation: sara_numeric_acc

@@ -9,8 +9,6 @@ doc_to_choice:
 - Implications
 - Support
 doc_to_target: '{{answer}}'
-group: legalbench_rhetorical_understanding
-group_alias: rhetorical_understanding
 include: ../prompt_templates/oral_argument_question_purpose/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc

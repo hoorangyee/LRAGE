@@ -6,8 +6,6 @@ doc_to_choice:
 - C
 - D
 doc_to_target: '{{answer}}'
-group: legalbench_interpretation
-group_alias: interpretation
 include: ../prompt_templates/maud_definition_contains_knowledge_requirement_-_answer/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc

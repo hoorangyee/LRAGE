@@ -1,0 +1,20 @@
+group: legalbench_issue
+group_alias: issue
+task:
+  - learned_hands_consumer
+  - learned_hands_divorce
+  - corporate_lobbying
+  - learned_hands_housing
+  - learned_hands_domestic_violence
+  - learned_hands_business
+  - learned_hands_benefits
+  - learned_hands_traffic
+  - learned_hands_torts
+  - learned_hands_employment
+  - learned_hands_estates
+  - learned_hands_crime
+  - learned_hands_immigration
+  - learned_hands_health
+  - learned_hands_education
+  - learned_hands_courts
+  - learned_hands_family

@@ -1,0 +1,19 @@
+group: legalbench_rule
+group_alias: rule
+task:
+  - ucc_v_common_law
+  - diversity_6
+  - hearsay
+  - diversity_4
+  - diversity_5
+  - diversity_3
+  - diversity_1
+  - successor_liability
+  - abercrombie
+  - telemarketing_sales_rule
+  - diversity_2
+  - personal_jurisdiction
+  - citation_prediction_classification
+  - international_citizenship_questions
+  - nys_judicial_ethics
+  - citation_prediction_open

@@ -5,8 +5,6 @@ doc_to_choice:
 - B
 - C
 doc_to_target: '{{answer}}'
-group: legalbench_interpretation
-group_alias: interpretation
 include: ../prompt_templates/insurance_policy_interpretation/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc

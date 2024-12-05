@@ -8,8 +8,6 @@ doc_to_choice:
 - fanciful
 doc_to_query: text
 doc_to_target: '{{answer}}'
-group: legalbench_rule
-group_alias: rule
 include: ../../prompt_templates/abercrombie/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc

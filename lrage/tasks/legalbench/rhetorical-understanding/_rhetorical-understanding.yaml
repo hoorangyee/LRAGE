@@ -1,0 +1,13 @@
+group: legalbench_rhetorical-understanding
+group_alias: rhetorical-understanding
+task:
+  - legal_reasoning_causality
+  - overruling
+  - definition_classification
+  - definition_extraction
+  - function_of_decision_section
+  - textualism_tool_plain
+  - scalr
+  - canada_tax_court_outcomes
+  - oral_argument_question_purpose
+  - textualism_tool_dictionaries

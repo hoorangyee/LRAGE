@@ -4,8 +4,6 @@ doc_to_choice:
 - A
 - B
 doc_to_target: '{{answer}}'
-group: legalbench_interpretation
-group_alias: interpretation
 include: ../prompt_templates/maud_application_of_buyer_consent_requirement_(negative_interim_covenant)/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc
