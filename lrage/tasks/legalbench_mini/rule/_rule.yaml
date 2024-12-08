@@ -1,19 +1,19 @@
 group: legalbench_mini_rule
 group_alias: rule
 task:
-  - ucc_v_common_law
-  - diversity_6
-  - hearsay
-  - diversity_4
-  - diversity_5
-  - diversity_3
-  - diversity_1
-  - successor_liability
-  - abercrombie
-  - telemarketing_sales_rule
-  - diversity_2
-  - personal_jurisdiction
-  - citation_prediction_classification
-  - international_citizenship_questions
-  - nys_judicial_ethics
-  - citation_prediction_open
+  - ucc_v_common_law_mini
+  - diversity_6_mini
+  - hearsay_mini
+  - diversity_4_mini
+  - diversity_5_mini
+  - diversity_3_mini
+  - diversity_1_mini
+  - successor_liability_mini
+  - abercrombie_mini
+  - telemarketing_sales_rule_mini
+  - diversity_2_mini
+  - personal_jurisdiction_mini
+  - citation_prediction_classification_mini
+  - international_citizenship_questions_mini
+  - nys_judicial_ethics_mini
+  - citation_prediction_open_mini
