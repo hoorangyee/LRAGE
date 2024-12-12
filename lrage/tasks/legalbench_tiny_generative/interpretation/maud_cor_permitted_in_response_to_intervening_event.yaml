@@ -1,0 +1,12 @@
+dataset_name: maud_cor_permitted_in_response_to_intervening_event
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/maud_cor_permitted_in_response_to_intervening_event/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: generate_until
+task: maud_cor_permitted_in_response_to_intervening_event_tiny_generative
+test_split: test
+training_split: train

@@ -1,0 +1,4 @@
+doc_to_text: "### Human: {{text}} \nDoes the post discuss public benefits and social\
+  \ services that people can get from the government, like for food, disability, old\
+  \ age, housing, medical help, unemployment, child care, or other social needs?\n\
+  ### Assistant:"

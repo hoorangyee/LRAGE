@@ -1,0 +1,12 @@
+dataset_name: citation_prediction_open
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../../prompt_templates/citation_prediction_open/base_prompt.yaml
+metric_list:
+- aggregation: citation_acc
+  higher_is_better: true
+  metric: citation_acc
+output_type: generate_until
+task: citation_prediction_open_tiny_generative
+test_split: test
+training_split: train

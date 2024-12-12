@@ -1,0 +1,12 @@
+dataset_name: opp115_third_party_sharing_collection
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/opp115_third_party_sharing_collection/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: generate_until
+task: opp115_third_party_sharing_collection_tiny_generative
+test_split: test
+training_split: train

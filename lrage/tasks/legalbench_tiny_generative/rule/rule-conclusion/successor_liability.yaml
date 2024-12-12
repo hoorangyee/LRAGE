@@ -1,0 +1,12 @@
+dataset_name: successor_liability
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../../prompt_templates/successor_liability/base_prompt.yaml
+metric_list:
+- aggregation: successor_liability_f1
+  higher_is_better: true
+  metric: successor_liability_f1
+output_type: generate_until
+task: successor_liability_tiny_generative
+test_split: test
+training_split: train

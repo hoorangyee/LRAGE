@@ -1,0 +1,12 @@
+dataset_name: maud_initial_matching_rights_period_(cor)
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/maud_initial_matching_rights_period_(cor)/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: generate_until
+task: maud_initial_matching_rights_period_(cor)_tiny_generative
+test_split: test
+training_split: train

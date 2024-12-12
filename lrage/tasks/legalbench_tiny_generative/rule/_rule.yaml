@@ -1,0 +1,19 @@
+group: legalbench_tiny_rule_generative
+group_alias: rule
+task:
+- ucc_v_common_law_tiny_generative
+- diversity_6_tiny_generative
+- hearsay_tiny_generative
+- diversity_4_tiny_generative
+- diversity_5_tiny_generative
+- diversity_3_tiny_generative
+- diversity_1_tiny_generative
+- successor_liability_tiny_generative
+- abercrombie_tiny_generative
+- telemarketing_sales_rule_tiny_generative
+- diversity_2_tiny_generative
+- personal_jurisdiction_tiny_generative
+- citation_prediction_classification_tiny_generative
+- international_citizenship_questions_tiny_generative
+- nys_judicial_ethics_tiny_generative
+- citation_prediction_open_tiny_generative

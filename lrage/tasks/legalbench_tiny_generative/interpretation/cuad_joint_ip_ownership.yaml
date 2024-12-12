@@ -1,0 +1,12 @@
+dataset_name: cuad_joint_ip_ownership
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/cuad_joint_ip_ownership/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: generate_until
+task: cuad_joint_ip_ownership_tiny_generative
+test_split: test
+training_split: train

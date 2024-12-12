@@ -1,0 +1,12 @@
+dataset_name: nys_judicial_ethics
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../../prompt_templates/nys_judicial_ethics/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: generate_until
+task: nys_judicial_ethics_tiny_generative
+test_split: test
+training_split: train

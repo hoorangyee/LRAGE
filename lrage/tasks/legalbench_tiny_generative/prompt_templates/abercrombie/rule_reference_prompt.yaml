@@ -1,0 +1,7 @@
+doc_to_text: 'Determine the type of each mark (generic, descriptive, suggestive, arbitrary,
+  fanciful) under the Abercrombie factors.
+
+
+  Q: {{text}} What is the type of mark?
+
+  A:'

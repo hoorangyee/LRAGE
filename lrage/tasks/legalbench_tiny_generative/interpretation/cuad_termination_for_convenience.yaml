@@ -1,0 +1,12 @@
+dataset_name: cuad_termination_for_convenience
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/cuad_termination_for_convenience/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: generate_until
+task: cuad_termination_for_convenience_tiny_generative
+test_split: test
+training_split: train

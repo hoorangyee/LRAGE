@@ -1,0 +1,12 @@
+dataset_name: maud_intervening_event_-_required_to_occur_after_signing_-_answer
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/maud_intervening_event_-_required_to_occur_after_signing_-_answer/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: generate_until
+task: maud_intervening_event_-_required_to_occur_after_signing_-_answer_tiny_generative
+test_split: test
+training_split: train

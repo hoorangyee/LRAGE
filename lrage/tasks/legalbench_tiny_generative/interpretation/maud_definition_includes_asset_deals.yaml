@@ -1,0 +1,12 @@
+dataset_name: maud_definition_includes_asset_deals
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/maud_definition_includes_asset_deals/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: generate_until
+task: maud_definition_includes_asset_deals_tiny_generative
+test_split: test
+training_split: train

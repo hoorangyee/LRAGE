@@ -1,0 +1,12 @@
+dataset_name: cuad_source_code_escrow
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/cuad_source_code_escrow/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: generate_until
+task: cuad_source_code_escrow_tiny_generative
+test_split: test
+training_split: train
