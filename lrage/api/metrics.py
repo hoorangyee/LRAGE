@@ -130,7 +130,11 @@ def brier_score(items):  # This is a passthrough function
 def balanced_acc(items):
     answers = list(zip(*items))[0]
     generations = list(zip(*items))[1]
-    return sklearn.metrics.balanced_accuracy_score(answers, generations)
+
+    normalized_answers = [normalize(a, stem=False) for a in answers]
+    normalized_gens = [normalize(g, stem=False) for g in generations]
+
+    return sklearn.metrics.balanced_accuracy_score(normalized_answers, normalized_gens)
 
 @register_aggregation("citation_acc")
 def balanced_acc(items):
