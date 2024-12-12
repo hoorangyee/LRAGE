@@ -1,0 +1,20 @@
+group: legalbench_mini_issue_generative
+group_alias: issue
+task:
+- learned_hands_consumer_mini_generative
+- learned_hands_divorce_mini_generative
+- corporate_lobbying_mini_generative
+- learned_hands_housing_mini_generative
+- learned_hands_domestic_violence_mini_generative
+- learned_hands_business_mini_generative
+- learned_hands_benefits_mini_generative
+- learned_hands_traffic_mini_generative
+- learned_hands_torts_mini_generative
+- learned_hands_employment_mini_generative
+- learned_hands_estates_mini_generative
+- learned_hands_crime_mini_generative
+- learned_hands_immigration_mini_generative
+- learned_hands_health_mini_generative
+- learned_hands_education_mini_generative
+- learned_hands_courts_mini_generative
+- learned_hands_family_mini_generative

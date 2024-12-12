@@ -1,0 +1,6 @@
+group: legalbench_mini_generative
+task:
+- legalbench_mini_interpretation_generative
+- legalbench_mini_issue_generative
+- legalbench_mini_rhetorical-understanding_generative
+- legalbench_mini_rule_generative

@@ -1,0 +1,12 @@
+dataset_name: sara_numeric
+dataset_path: hoorangyee/legalbench_mini
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/sara_numeric/base_prompt.yaml
+metric_list:
+- aggregation: sara_numeric_acc
+  higher_is_better: true
+  metric: sara_numeric_acc
+output_type: generate_until
+task: sara_numeric_mini_generative
+test_split: test
+training_split: train

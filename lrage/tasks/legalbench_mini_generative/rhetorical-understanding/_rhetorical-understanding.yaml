@@ -1,0 +1,13 @@
+group: legalbench_mini_rhetorical-understanding_generative
+group_alias: rhetorical-understanding
+task:
+- legal_reasoning_causality_mini_generative
+- overruling_mini_generative
+- definition_classification_mini_generative
+- definition_extraction_mini_generative
+- function_of_decision_section_mini_generative
+- textualism_tool_plain_mini_generative
+- scalr_mini_generative
+- canada_tax_court_outcomes_mini_generative
+- oral_argument_question_purpose_mini_generative
+- textualism_tool_dictionaries_mini_generative

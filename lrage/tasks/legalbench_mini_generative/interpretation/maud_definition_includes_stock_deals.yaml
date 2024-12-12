@@ -1,0 +1,17 @@
+dataset_name: maud_definition_includes_stock_deals
+dataset_path: hoorangyee/legalbench_mini
+doc_to_choice:
+- A
+- B
+- C
+- D
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/maud_definition_includes_stock_deals/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: maud_definition_includes_stock_deals_mini_generative
+test_split: test
+training_split: train

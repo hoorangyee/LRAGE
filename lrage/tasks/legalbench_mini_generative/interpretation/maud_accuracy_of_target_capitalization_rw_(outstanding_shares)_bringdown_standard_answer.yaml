@@ -1,0 +1,17 @@
+dataset_name: maud_accuracy_of_target_capitalization_rw_(outstanding_shares)_bringdown_standard_answer
+dataset_path: hoorangyee/legalbench_mini
+doc_to_choice:
+- A
+- B
+- C
+- D
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/maud_accuracy_of_target_capitalization_rw_(outstanding_shares)_bringdown_standard_answer/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: maud_accuracy_of_target_capitalization_rw_(outstanding_shares)_bringdown_standard_answer_mini_generative
+test_split: test
+training_split: train

@@ -1,0 +1,15 @@
+dataset_name: cuad_license_grant
+dataset_path: hoorangyee/legalbench_mini
+doc_to_choice:
+- 'Yes'
+- 'No'
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/cuad_license_grant/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: cuad_license_grant_mini_generative
+test_split: test
+training_split: train
