@@ -1,4 +1,4 @@
-group: legalbench_mini
+group: legalbench_tiny
 task:
 - legalbench_tiny_interpretation
 - legalbench_tiny_issue
