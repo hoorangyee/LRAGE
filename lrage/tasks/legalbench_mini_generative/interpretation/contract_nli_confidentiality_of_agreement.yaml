@@ -1,15 +1,12 @@
 dataset_name: contract_nli_confidentiality_of_agreement
 dataset_path: hoorangyee/legalbench_mini
-doc_to_choice:
-- 'Yes'
-- 'No'
 doc_to_target: '{{answer}}'
 include: ../prompt_templates/contract_nli_confidentiality_of_agreement/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc
   higher_is_better: true
   metric: balanced_acc
-output_type: multiple_choice
+output_type: generate_until
 task: contract_nli_confidentiality_of_agreement_mini_generative
 test_split: test
 training_split: train

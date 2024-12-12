@@ -1,22 +1,12 @@
 dataset_name: unfair_tos
 dataset_path: hoorangyee/legalbench_mini
-doc_to_choice:
-- Arbitration
-- Unilateral change
-- Content removal
-- Jurisdiction
-- Choice of law
-- Limitation of liability
-- Unilateral termination
-- Contract by using
-- Other
 doc_to_target: '{{answer}}'
 include: ../prompt_templates/unfair_tos/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc
   higher_is_better: true
   metric: balanced_acc
-output_type: multiple_choice
+output_type: generate_until
 task: legal_unfair_tos_mini_generative
 test_split: test
 training_split: train

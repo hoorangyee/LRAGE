@@ -1,23 +1,12 @@
 dataset_name: maud_cor_standard_(superior_offer)
 dataset_path: hoorangyee/legalbench_mini
-doc_to_choice:
-- A
-- B
-- C
-- D
-- E
-- F
-- G
-- H
-- I
-- J
 doc_to_target: '{{answer}}'
 include: ../prompt_templates/maud_cor_standard_(superior_offer)/base_prompt.yaml
 metric_list:
 - aggregation: balanced_acc
   higher_is_better: true
   metric: balanced_acc
-output_type: multiple_choice
+output_type: generate_until
 task: maud_cor_standard_(superior_offer)_mini_generative
 test_split: test
 training_split: train
