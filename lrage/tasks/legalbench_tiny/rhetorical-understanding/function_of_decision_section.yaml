@@ -1,0 +1,21 @@
+dataset_name: function_of_decision_section
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_choice:
+- Facts
+- Procedural History
+- Issue
+- Rule
+- Analysis
+- Conclusion
+- Decree
+doc_to_query: Paragraph
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/function_of_decision_section/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: function_of_decision_section_tiny
+test_split: test
+training_split: train

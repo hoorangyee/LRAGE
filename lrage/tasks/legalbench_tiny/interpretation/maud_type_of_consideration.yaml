@@ -1,0 +1,17 @@
+dataset_name: maud_type_of_consideration
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_choice:
+- A
+- B
+- C
+- D
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/maud_type_of_consideration/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: maud_type_of_consideration_tiny
+test_split: test
+training_split: train

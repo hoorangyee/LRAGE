@@ -1,0 +1,6 @@
+doc_to_text: '{{contract}}
+
+
+  Question: {{question}} Answer Yes or No.
+
+  Answer:'

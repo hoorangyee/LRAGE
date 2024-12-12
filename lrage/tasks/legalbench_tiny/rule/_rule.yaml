@@ -1,0 +1,19 @@
+group: legalbench_tiny_rule
+group_alias: rule
+task:
+- ucc_v_common_law_tiny
+- diversity_6_tiny
+- hearsay_tiny
+- diversity_4_tiny
+- diversity_5_tiny
+- diversity_3_tiny
+- diversity_1_tiny
+- successor_liability_tiny
+- abercrombie_tiny
+- telemarketing_sales_rule_tiny
+- diversity_2_tiny
+- personal_jurisdiction_tiny
+- citation_prediction_classification_tiny
+- international_citizenship_questions_tiny
+- nys_judicial_ethics_tiny
+- citation_prediction_open_tiny

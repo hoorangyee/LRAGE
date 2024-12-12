@@ -1,0 +1,19 @@
+dataset_name: abercrombie
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_choice:
+- generic
+- descriptive
+- suggestive
+- arbitrary
+- fanciful
+doc_to_query: text
+doc_to_target: '{{answer}}'
+include: ../../prompt_templates/abercrombie/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: abercrombie_tiny
+test_split: test
+training_split: train

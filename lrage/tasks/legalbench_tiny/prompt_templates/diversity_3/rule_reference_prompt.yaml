@@ -1,0 +1,2 @@
+doc_to_text: "Determine whether there is diversity jurisdiction under US federal law.\
+  \ \n\nQ: {{text}} Is there diversity jurisdiction? Answer \"Yes\" or \"No\".\nA:"

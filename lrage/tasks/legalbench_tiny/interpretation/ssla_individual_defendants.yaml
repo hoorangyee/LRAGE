@@ -1,0 +1,12 @@
+dataset_name: ssla_individual_defendants
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/ssla_individual_defendants/base_prompt.yaml
+metric_list:
+- aggregation: ssla_f1
+  higher_is_better: true
+  metric: ssla_f1
+output_type: generate_until
+task: ssla_individual_defendants_tiny
+test_split: test
+training_split: train

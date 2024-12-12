@@ -1,0 +1,28 @@
+doc_to_text: "Classify the following text using the following definitions. \n\n- Facts:\
+  \ The paragraph describes the faction background that led up to the present lawsuit.\n\
+  - Procedural History: The paragraph describes the course of litigation that led\
+  \ to the current proceeding before the court.\n- Issue: The paragraph describes\
+  \ the legal or factual issue that must be resolved by the court.\n- Rule: The paragraph\
+  \ describes a rule of law relevant to resolving the issue.\n- Analysis: The paragraph\
+  \ analyzes the legal issue by applying the relevant legal principles to the facts\
+  \ of the present dispute.\n- Conclusion: The paragraph presents a conclusion of\
+  \ the court.\n- Decree: The paragraph constitutes a decree resolving the dispute.\n\
+  \n\nText: We need go no further. For aught that appears, the appellant was fairly\
+  \ tried before an able and thoughtful judge and an impartial jury, justly convicted,\
+  \ and lawfully sentenced. For the reasons elucidated above, the judgment of the\
+  \ district court is Affirmed.\nLabel: Facts\n\nText: Lassiter pled guilty to kidnapping,\
+  \ 18 U.S.C. § 1201(a), to assault with intent to kill while armed, D.C. Code §§\
+  \ 22-401, -4502, and to using a firearm during a crime of violence, 18 U.S.C. §\
+  \ 924(c)(1)(A).\t\nLabel: Procedural History\n\nText: In this venue, the appellant\
+  \ advances two claims of trial error and a cluster of claims of sentencing error.1\
+  \ Since none possesses even a patina of plausibility, we make short shrift of them.\t\
+  \nLabel: Issue\n\nText: On appeal from a dismissal in favor of a foreign sovereign\
+  \ on grounds of sovereign immunity, we assume the unchallenged factual allegations\
+  \ in the complaint to be true. Simon v. Republic of Hungary, 812 F.3d 127, 135 (D.C.\
+  \ Cir. 2016).\t\nLabel: Rule\n\nText: But even if Khochinsky's relevant claims fit\
+  \ within that description, the exception excludes from its coverage “any claim arising\
+  \ out of malicious prosecution, abuse of process, libel, slander, misrepresentation,\
+  \ deceit, or interference with contract rights.” Id. § 1605(a)(5)(B).\t\nLabel:\
+  \ Analysis\n\nText: We agree with the district court that none of those exceptions\
+  \ extends to Khochinsky's claims.\t\nLabel: Conclusion\n\nText: For these reasons,\
+  \ we AFFIRM.\t\nLabel: Decree\n\nText: {{Paragraph}}\nLabel:"

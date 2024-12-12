@@ -1,0 +1,15 @@
+dataset_name: maud_includes_consistent_with_past_practice
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_choice:
+- A
+- B
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/maud_includes_consistent_with_past_practice/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: maud_includes_consistent_with_past_practice_tiny
+test_split: test
+training_split: train

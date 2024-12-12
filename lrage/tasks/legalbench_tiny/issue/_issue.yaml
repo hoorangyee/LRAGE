@@ -1,0 +1,20 @@
+group: legalbench_tiny_issue
+group_alias: issue
+task:
+- learned_hands_consumer_tiny
+- learned_hands_divorce_tiny
+- corporate_lobbying_tiny
+- learned_hands_housing_tiny
+- learned_hands_domestic_violence_tiny
+- learned_hands_business_tiny
+- learned_hands_benefits_tiny
+- learned_hands_traffic_tiny
+- learned_hands_torts_tiny
+- learned_hands_employment_tiny
+- learned_hands_estates_tiny
+- learned_hands_crime_tiny
+- learned_hands_immigration_tiny
+- learned_hands_health_tiny
+- learned_hands_education_tiny
+- learned_hands_courts_tiny
+- learned_hands_family_tiny

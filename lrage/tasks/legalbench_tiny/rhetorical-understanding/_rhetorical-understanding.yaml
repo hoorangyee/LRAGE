@@ -1,0 +1,13 @@
+group: legalbench_tiny_rhetorical-understanding
+group_alias: rhetorical-understanding
+task:
+- legal_reasoning_causality_tiny
+- overruling_tiny
+- definition_classification_tiny
+- definition_extraction_tiny
+- function_of_decision_section_tiny
+- textualism_tool_plain_tiny
+- scalr_tiny
+- canada_tax_court_outcomes_tiny
+- oral_argument_question_purpose_tiny
+- textualism_tool_dictionaries_tiny

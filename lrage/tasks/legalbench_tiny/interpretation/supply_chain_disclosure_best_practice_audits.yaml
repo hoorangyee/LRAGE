@@ -1,0 +1,15 @@
+dataset_name: supply_chain_disclosure_best_practice_audits
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_choice:
+- 'Yes'
+- 'No'
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/supply_chain_disclosure_best_practice_audits/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: multiple_choice
+task: supply_chain_disclosure_best_practice_audits_tiny
+test_split: test
+training_split: train
