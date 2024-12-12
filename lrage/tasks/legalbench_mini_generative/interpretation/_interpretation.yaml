@@ -74,6 +74,8 @@ task:
 - maud_definition_includes_stock_deals_mini_generative
 - cuad_affiliate_license-licensor_mini_generative
 - contract_nli_permissible_acquirement_of_similar_information_mini_generative
+- contract_nli_permissible_copy_mini_generative
+- contract_nli_permissible_development_of_similar_information_mini_generative
 - cuad_non-compete_mini_generative
 - cuad_audit_rights_mini_generative
 - contract_nli_confidentiality_of_agreement_mini_generative

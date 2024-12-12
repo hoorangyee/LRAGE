@@ -74,6 +74,8 @@ task:
 - maud_definition_includes_stock_deals_tiny
 - cuad_affiliate_license-licensor_tiny
 - contract_nli_permissible_acquirement_of_similar_information_tiny
+- contract_nli_permissible_development_of_similar_information_tiny
+- contract_nli_permissible_copy_mini_tiny
 - cuad_non-compete_tiny
 - cuad_audit_rights_tiny
 - contract_nli_confidentiality_of_agreement_tiny

@@ -1,0 +1,12 @@
+dataset_name: contract_nli_permissible_copy
+dataset_path: hoorangyee/legalbench_tiny
+doc_to_target: '{{answer}}'
+include: ../prompt_templates/contract_nli_permissible_copy/base_prompt.yaml
+metric_list:
+- aggregation: balanced_acc
+  higher_is_better: true
+  metric: balanced_acc
+output_type: generate_until
+task: contract_nli_permissible_copy_tiny_generative
+test_split: test
+training_split: train

@@ -99,6 +99,8 @@ task:
   - cuad_insurance_mini
   - maud_cor_permitted_in_response_to_intervening_event_mini
   - contract_nli_permissible_post-agreement_possession_mini
+  - contract_nli_permissible_copy_mini
+  - contract_nli_permissible_development_of_similar_information_mini
   - maud_financial_point_of_view_is_the_sole_consideration_mini
   - maud_definition_includes_asset_deals_mini
   - cuad_uncapped_liability_mini
