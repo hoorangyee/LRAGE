@@ -29,6 +29,9 @@ LRAGE is developed to address the unique challenges that Legal AI researchers fa
 ## Prerequisites
 
 - JDK 21 is required to use the Pyserini retriever
+    ```bash
+    conda install openjdk=21
+    ```
 
 ## Installation
 
