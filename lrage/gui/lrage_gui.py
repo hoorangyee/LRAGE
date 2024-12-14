@@ -1,16 +1,15 @@
-import sys
 import os
-import yaml
-import json
+import argparse
+
+import torch
+import pandas as pd
+import gradio as gr
 
 from lrage.tasks import TaskManager
 from lrage.evaluator import simple_evaluate
 from lrage.loggers import EvaluationTracker
 from lrage.utils import simple_parse_args_string, handle_non_serializable
-
-import gradio as gr
-import pandas as pd
-import torch
+from lrage.gui.gui_utils.table import a
 
 def toggle_visiblity(value):
     if value:
@@ -421,5 +420,10 @@ with gr.Blocks(title="⚖️ LRAGE") as demo:
                 outputs=[results]
             )
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--port", type=int, default=7860)
+
+args = parser.parse_args()
+
 if __name__ == '__main__':
-    demo.launch()
+    demo.launch(server_port=args.port)
