@@ -29,7 +29,7 @@ dependencies = [
     "numexpr",
     "peft>=0.2.0",
     "pybind11>=2.6.2",
-    "pyserini>=0.39.0",
+    "pyserini>=0.43.0",
     "pytablewriter",
     "rerankers>=0.5.3",
     "rouge-score>=0.0.4",
