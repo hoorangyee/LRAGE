@@ -75,6 +75,7 @@ def simple_evaluate(
     reranker_args: Optional[str] = None,
     fewshot_as_multiturn: bool = False,
     gen_kwargs: Optional[str] = None,
+    judge_gen_kwargs: Optional[str] = None,
     task_manager: Optional[TaskManager] = None,
     verbosity: str = "INFO",
     predict_only: bool = False,
@@ -180,6 +181,15 @@ def simple_evaluate(
         )
         if gen_kwargs == "":
             gen_kwargs = None
+
+    if judge_gen_kwargs is not None:
+        judge_gen_kwargs = simple_parse_args_string(judge_gen_kwargs)
+        eval_logger.warning(
+            "judge_generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. "
+            "Ensure 'do_sample=True' for non-greedy decoding!"
+        )
+        if judge_gen_kwargs == "":
+            judge_gen_kwargs = None
 
     if isinstance(model, str):
         if model_args is None:
@@ -306,6 +316,10 @@ def simple_evaluate(
             if gen_kwargs is not None:
                 task_obj.set_config(
                     key="generation_kwargs", value=gen_kwargs, update=True
+                )
+            if judge_gen_kwargs is not None:
+                task_obj.set_config(
+                    key="judge_generation_kwargs", value=judge_gen_kwargs, update=True
                 )
 
         if predict_only:
@@ -586,7 +600,7 @@ def evaluate(
                 requests = instances_by_doc_id[doc_id]
                 if task.config.doc_to_rubric is not None:
                     metrics = task.process_results(
-                        doc, [req.filtered_resps[filter_key] for req in requests], judge_lm
+                        doc, [req.filtered_resps[filter_key] for req in requests], doc_id, judge_lm, 
                     )
                 else:
                     metrics = task.process_results(
