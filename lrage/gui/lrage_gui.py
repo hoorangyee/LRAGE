@@ -22,9 +22,14 @@ if __name__ == '__main__':
 
     with gr.Blocks(title="⚖️ LRAGE") as demo:
         gr.Markdown(
-            """<h1 style='text-align: center'>⚖️ LRAGE: Legal Retrieval Augmented Generation Evaluation Tool</h1>""",
+            """<h1 style='text-align: center'>⚖️ LRAGE: Legal Retrieval Augmented Generation Evaluation Tool</h1>
+            <p style='text-align: center'>
+                Created by <a href="https://github.com/hoorangyee/LRAGE" target="_blank">Minhu Park</a>
+            </p>
+            """,
             elem_id="title"
         )
+        
         with gr.Tab(label='evaluation'):
             with gr.Row():
                 with gr.Column():
@@ -34,15 +39,16 @@ if __name__ == '__main__':
                             multiselect=True)
                     
                     with gr.Group():
-                        model = gr.Radio(
-                            choices=lm_eval_avil_model_types, 
-                            label="Choose model type")
-                        model_args = gr.Dropdown(
-                            lm_eval_avil_model_args,
-                            value=None,
-                            label="Model",
-                            scale=1)
-                        model.change(update_dropdown, inputs=model, outputs=model_args)
+                        with gr.Row():
+                            model = gr.Radio(
+                                choices=lm_eval_avil_model_types, 
+                                label="Choose model type")
+                            model_args = gr.Dropdown(
+                                lm_eval_avil_model_args,
+                                value=None,
+                                label="Model",
+                                scale=1)
+                            model.change(update_dropdown, inputs=model, outputs=model_args)
 
                     with gr.Group():
                     
@@ -135,11 +141,10 @@ if __name__ == '__main__':
                         )
 
                     with gr.Accordion(label="LLM-as-a-Judge", open=False):
-                        with gr.Column():
-                            judge_model = gr.Dropdown(
-                                value=None,
-                                label="Judge Model type", 
-                                choices=lm_eval_avil_model_types)
+                        with gr.Row():
+                            judge_model = gr.Radio(
+                                choices=lm_eval_avil_model_types,
+                                label="Judge Model type")
                             judge_model_args = gr.Dropdown(
                                 lm_eval_avil_model_args,
                                 value=None,

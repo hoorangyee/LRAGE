@@ -4,11 +4,11 @@ lm_eval_avil_model_types:
 
 lm_eval_avil_model_args:
   huggingface:
-    "Llama-3.1-8B": "pretrained=meta-llama/Llama-3.1-8B-Instruct"
-    "Qwen2.5-7B": "pretrained=Qwen/Qwen2.5-7B-Instruct"
-    "SaulLM-7B": "pretrained=meta-llama/Llama-3.1-8B"
-    "Gemma-2-9B": "pretrained=google/gemma-2-9b-it"
-    "Phi-3.5-mini": "pretrained=microsoft/Phi-3.5-mini-instruct"
+    "Llama-3.1-8B": "pretrained=meta-llama/Llama-3.1-8B-Instruct,dtype=auto"
+    "Qwen2.5-7B": "pretrained=Qwen/Qwen2.5-7B-Instruct,dtype=auto"
+    "SaulLM-7B": "pretrained=meta-llama/Llama-3.1-8B,dtype=auto"
+    "Gemma-2-9B": "pretrained=google/gemma-2-9b-it,dtype=auto"
+    "Phi-3.5-mini": "pretrained=microsoft/Phi-3.5-mini-instruct,dtype=auto"
   openai-chat-completions:
     "gpt-4o": "model=gpt-4o"
     "gpt-4o-2024-11-20": "model=gpt-4o-2024-11-20"
@@ -19,13 +19,14 @@ lm_eval_avil_model_args:
 
 retriever_args:
   pyserini:
-    - "retriever_type=bm25,bm25_index_path=wikipedia-dpr-100w"
+    - "retriever_type=bm25,bm25_index_path=../../bm25_indexes/pile-of-law-mini"
     - "retriever_type=bm25,bm25_index_path=msmarco-v1-passage"
-    - "retriever_type=dense,bm25_index_path=wikipedia-dpr-100w,faiss_index_path=wikipedia-dpr-100w,encoder_path=facebook/dpr-question_encoder-multiset-base,encoder_type=dpr"
-    - "retriever_type=dense,bm25_index_path=wikipedia-dpr-100w,faiss_index_path=wikipedia-dpr-100w,encoder_path=nlpaueb/legal-bert-base-uncased,encoder_type=auto"
+    - "retriever_type=bm25,bm25_index_path=wikipedia-dpr-100w"
     - "retriever_type=dense,bm25_index_path=../../bm25_indexes/pile-of-law-mini,faiss_index_path=../../faiss_indexes/pile-of-law-mini,encoder_path=nlpaueb/legal-bert-base-uncased,encoder_type=auto"
     - "retriever_type=dense,bm25_index_path=../../bm25_indexes/pile-of-law-mini,faiss_index_path=../../faiss_indexes/pile-of-law-mini,encoder_path=lexlms/legal-longformer-base,encoder_type=auto"
     - "retriever_type=dense,bm25_index_path=../../bm25_indexes/pile-of-law-mini,faiss_index_path=../../faiss_indexes/pile-of-law-mini,encoder_path=lexlms/lexlms/legal-roberta-base,encoder_type=auto"
+    - "retriever_type=dense,bm25_index_path=wikipedia-dpr-100w,faiss_index_path=wikipedia-dpr-100w,encoder_path=facebook/dpr-question_encoder-multiset-base,encoder_type=dpr"
+    - "retriever_type=dense,bm25_index_path=wikipedia-dpr-100w,faiss_index_path=wikipedia-dpr-100w,encoder_path=nlpaueb/legal-bert-base-uncased,encoder_type=auto"
 
 reranker_args:
   - "reranker_type=colbert"
