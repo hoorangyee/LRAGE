@@ -64,7 +64,7 @@ def eval_tasks(
     rerank = False,
     reranker = None,
     reranker_args = None,
-    max_length=256,
+    max_new_tokens=256,
     temperature=0.3,
     do_sample=False,
     system_instruction = None,):
@@ -76,9 +76,10 @@ def eval_tasks(
     
     if judge_model:
         judge_model = lm_eval_avil_model_types[judge_model]
+        judge_model_args = lm_eval_avil_model_args[judge_model][judge_model_args]
 
-    gen_kwargs = "max_length=" + str(max_length) + ",temperature=" + str(temperature) + ",do_sample=" + str(do_sample)
-
+    gen_kwargs = "max_gen_toks=" + str(max_new_tokens) + ",temperature=" + str(temperature) + ",do_sample=" + str(do_sample)
+    
     log_samples = True
     output_path = "./eval_results"
 

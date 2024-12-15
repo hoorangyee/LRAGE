@@ -76,7 +76,7 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
    python lrage_gui.py
    ```
 
-   <img width="1512" alt="image" src="https://github.com/user-attachments/assets/e6b134dc-20a5-4916-8c01-78c15a6c409f">
+   <img width="1512" alt="image" src="assets/image.png">
 
 
 ## Basic Usage
