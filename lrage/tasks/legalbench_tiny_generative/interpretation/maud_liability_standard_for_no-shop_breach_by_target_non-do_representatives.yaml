@@ -10,3 +10,9 @@ output_type: generate_until
 task: maud_liability_standard_for_no-shop_breach_by_target_non-do_representatives_tiny_generative
 test_split: test
 training_split: train
+filter_list:
+- name: strict-match
+  filter:
+  - function: regex
+    regex_pattern: '((?<=The answer is )(.*)(?=.)|(?<=answer is )(.*)(?=.)|(?<=The answer: )(.*)(?=.)|(?<=The final answer: )(.*)(?=.))'
+  - function: take_first

@@ -10,3 +10,9 @@ output_type: generate_until
 task: maud_pandemic_or_other_public_health_event_specific_reference_to_pandemic-related_governmental_responses_or_measures_tiny_generative
 test_split: test
 training_split: train
+filter_list:
+- name: strict-match
+  filter:
+  - function: regex
+    regex_pattern: '((?<=The answer is )(.*)(?=.)|(?<=answer is )(.*)(?=.)|(?<=The answer: )(.*)(?=.)|(?<=The final answer: )(.*)(?=.))'
+  - function: take_first

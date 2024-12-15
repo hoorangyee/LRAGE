@@ -1,0 +1,2 @@
+doc_to_text: "{{contract}}\n\nQuestion: {{question}} Answer Yes or No.\nAnswer: Let's\
+  \ think step by step."

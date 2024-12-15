@@ -1,0 +1,8 @@
+doc_to_text: "Instruction: Read the segment of a merger agreement and answer the multiple-choice\
+  \ question by choosing the option that best characterizes the agreement.\nQuestion:\
+  \ What counts as Knowledge?\nOption A: Actual knowledge\nOption B: Constructive\
+  \ knowledge\n\nMerger Agreement: provided, however, that with respect to clause\
+  \ (i) only, no Effect to the extent resulting or arising from any of the following,\
+  \ shall <omitted> be deemed to constitute <omitted> a Company Material Adverse Effect\
+  \ (Pages 87-88)\nAnswer: B\n\nMerger Agreement: {{text}}\nAnswer: Let's think step\
+  \ by step."

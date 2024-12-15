@@ -10,3 +10,9 @@ output_type: generate_until
 task: maud_changes_in_gaap_or_other_accounting_principles__subject_to_disproportionate_impact_modifier_tiny_generative
 test_split: test
 training_split: train
+filter_list:
+- name: strict-match
+  filter:
+  - function: regex
+    regex_pattern: '((?<=The answer is )(.*)(?=.)|(?<=answer is )(.*)(?=.)|(?<=The answer: )(.*)(?=.)|(?<=The final answer: )(.*)(?=.))'
+  - function: take_first

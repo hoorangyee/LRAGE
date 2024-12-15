@@ -1,0 +1,14 @@
+doc_to_text: "Diversity jurisdiction exists when there is (1) complete diversity between\
+  \ plaintiffs and defendants, and (2) the amount-in-controversy (AiC) is greater\
+  \ than $75k.\n\nQ: Evelyn is from Hawaii. Charlotte is from Hawaii. Evelyn sues\
+  \ Charlotte for negligence for $20,000. Is there diversity jurisdiction?\nA: No\n\
+  \nQ: Ava is from Alaska. Mia is from Missouri. Ava sues Mia for wrongful eviction\
+  \ for $61,000. Is there diversity jurisdiction?\nA: No\n\nQ: Sophia is from Illinois.\
+  \ Noah is from Illinois. Sophia sues Noah for wrongful eviction for $39,000. Is\
+  \ there diversity jurisdiction?\nA: No\n\nQ: Oliver is from Nebraska. Theodore is\
+  \ from Nebraska. Oliver sues Theodore for medical malpractice for $3,106,000. Is\
+  \ there diversity jurisdiction?\nA: No\n\nQ: Oliver is from Virginia. James is from\
+  \ Georgia. Oliver sues James for medical malpractice for $10,000. Is there diversity\
+  \ jurisdiction?\nA: No\n\nQ: Isabella is from Alaska. Elijah is from Montana. Isabella\
+  \ sues Elijah for patent infringement for $1,522,000. Is there diversity jurisdiction?\n\
+  A: Yes\n\nQ: {{text}} Is there diversity jurisdiction?\nA: Let's think step by step."
