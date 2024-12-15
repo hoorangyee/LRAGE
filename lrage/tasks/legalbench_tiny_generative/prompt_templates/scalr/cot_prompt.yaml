@@ -1,0 +1,14 @@
+doc_to_text: "Given the following question presented in a court case, select the most\
+  \ relevant holding:\n\nQuestion: Can a defendant seek a new trial when a new prosecutor\
+  \ fails to abide by the terms of his predecessor’s plea agreement?\nChoices:\n0:\
+  \ \"holding that a defendant must have \"sufficient awareness of the relevant circumstances\
+  \ and likely consequences\" of his guilty plea\"\n1: \"holding that the government\
+  \ must be held to a promise made to a defendant during plea negotiations if that\
+  \ promise induced the defendant's guilty plea\"\n2: \"holding that a guilty plea\
+  \ is an express waiver of the constitutional right to confrontation\"\n3: \"holding\
+  \ that for a plea to be valid, a defendant must be “aware of the nature of the charges\
+  \ against him, including the elements of the . . . charge to which he plead[s] guilty”\"\
+  \n4: \"holding that \"a defendant is obliged to show a reasonable probability that,\
+  \ but for the error, he would not have entered the [guilty] plea.\"\"\nAnswer: 1\n\
+  \nQuestion: {{question}}\nChoices:\n0: {{choice_0}}\n1: {{choice_1}}\n2: {{choice_2}}\n\
+  3: {{choice_3}}\n4: {{choice_4}}\nAnswer: Let's think step by step."

@@ -1,0 +1,3 @@
+doc_to_text: "Answer the following questions considering the state of international\
+  \ law on January 1st, 2020.\n\nQuestion: {{question}} Answer Yes or No.\nAnswer:\
+  \ Let's think step by step."

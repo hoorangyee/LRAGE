@@ -1,0 +1,3 @@
+doc_to_text: "Answer the following questions.\n\nStatute: {{statute}}\nDescription:\
+  \ {{description}}\nQuestion: {{question}}. State the amount first.\nAnswer: Let's\
+  \ think step by step."

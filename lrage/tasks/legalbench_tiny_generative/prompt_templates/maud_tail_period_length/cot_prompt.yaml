@@ -1,0 +1,10 @@
+doc_to_text: "Instruction: Read the segment of a merger agreement and answer the multiple-choice\
+  \ question by choosing the option that best characterizes the agreement.\nQuestion:\
+  \ How long is the Tail Period?\nOption A: 12 months or longer\nOption B: Other\n\
+  Option C: within 12 months\nOption D: within 6 months\nOption E: within 9 months\n\
+  \nMerger Agreement: Section 7.3 Termination Fees. <omitted> (b) <omitted>  if <omitted>\
+  \ Parent or the Company terminates this Agreement <omitted>  (iii) <omitted> the\
+  \ Company shall have consummated an Alternative Acquisition Proposal or entered\
+  \ into an Alternative Acquisition Agreement for any Alternative Acquisition Proposal\
+  \ <omitted> which Alternative Acquisition Proposal is ultimately consummated (Page\
+  \ 80)\nAnswer: C\n\nMerger Agreement: {{text}}\nAnswer: Let's think step by step."

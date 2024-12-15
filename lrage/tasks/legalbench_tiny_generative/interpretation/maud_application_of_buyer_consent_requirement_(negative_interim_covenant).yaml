@@ -10,3 +10,9 @@ output_type: generate_until
 task: maud_application_of_buyer_consent_requirement_(negative_interim_covenant)_tiny_generative
 test_split: test
 training_split: train
+filter_list:
+- name: strict-match
+  filter:
+  - function: regex
+    regex_pattern: '((?<=The answer is )(.*)(?=.)|(?<=answer is )(.*)(?=.)|(?<=The answer: )(.*)(?=.)|(?<=The final answer: )(.*)(?=.))'
+  - function: take_first
