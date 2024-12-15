@@ -1,11 +1,15 @@
 import os
 
 import pandas as pd
+
+import torch
 import datasets
+
 
 from lrage.evaluator import simple_evaluate
 from lrage.loggers import EvaluationTracker
-from lrage.utils import simple_parse_args_string, handle_non_serializable
+from lrage.utils import simple_parse_args_string
+from lrage.gui.gui_utils.utils import lm_eval_avil_model_types, lm_eval_avil_model_args
 
 def build_table(result_dict, sort_results: bool = True):
     """Generate DataFrame of results."""
@@ -46,42 +50,56 @@ def build_table(result_dict, sort_results: bool = True):
     return df
 
 def eval_tasks(
-        model, 
-        model_args, 
-        tasks, 
-        api_key_name = None,
-        api_key = None,
-        judge_model = None,
-        judge_model_args = None,
-        retrieve_docs = False, 
-        top_k = 3,
-        retriever = None, 
-        retriever_args = None,
-        rerank = False,
-        reranker = None,
-        reranker_args = None,
-        batch_size = 1, 
-        device = ["cpu"], 
-        use_cache = None,
-        cache_requests = None,
-        num_fewshot = 0,
-        fewshot_as_multiturn = False,
-        apply_chat_template = False,
-        gen_kwargs = None,
-        system_instruction = None,
-        hf_hub_log_args = None,
-        log_samples = False,
-        output_path = None,):
+    model, 
+    model_args, 
+    tasks,
+    openai_key = None,
+    hf_token = None,
+    judge_model = None,
+    judge_model_args = None,
+    retrieve_docs = False, 
+    top_k = 3,
+    retriever = None, 
+    retriever_args = None,
+    rerank = False,
+    reranker = None,
+    reranker_args = None,
+    max_length=256,
+    temperature=0.3,
+    do_sample=False,
+    system_instruction = None,):
+
+    datasets.config.HF_DATASETS_TRUST_REMOTE_CODE = True
+
+    model = lm_eval_avil_model_types[model]
+    model_args = lm_eval_avil_model_args[model][model_args]
     
+    if judge_model:
+        judge_model = lm_eval_avil_model_types[judge_model]
+
+    gen_kwargs = "max_length=" + str(max_length) + ",temperature=" + str(temperature) + ",do_sample=" + str(do_sample)
+
+    log_samples = True
+    output_path = "./eval_results"
+
+    num_fewshot = 0
+    fewshot_as_multiturn = False
+    apply_chat_template = False
+
+    use_cache = None
+    cache_requests = None
+
+    batch_size = "auto"
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    hf_hub_log_args = ""
+
     if use_cache == "":
         use_cache = None
-    if gen_kwargs == "":
-        gen_kwargs = None
-    if output_path == "":
-        output_path = None
 
-    if api_key_name and api_key:
-        os.environ[api_key_name] = api_key
+    if openai_key:
+        os.environ["OPENAI_API_KEY"] = openai_key
+    if hf_token:
+        os.environ["HF_TOKEN"] = hf_token
     
     tasks_list = [task_name for task_name in tasks]
     if output_path:
@@ -90,8 +108,6 @@ def eval_tasks(
         hf_hub_log_args += f",token={os.environ.get('HF_TOKEN')}"
     evaluation_tracker_args = simple_parse_args_string(hf_hub_log_args)
     evaluation_tracker = EvaluationTracker(**evaluation_tracker_args)
-
-    datasets.config.HF_DATASETS_TRUST_REMOTE_CODE = True
 
     results = simple_evaluate(
         model=model,

@@ -21,3 +21,4 @@ lrage/caching/.cache
 # don't track files created by wandb
 wandb
 examples/wandb
+eval_results/*
