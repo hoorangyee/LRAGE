@@ -248,6 +248,8 @@ def simple_evaluate(
                         "device": judge_device,
                     },
                 )
+        else:
+            judge_lm = None
     else:
         judge_lm = None
 
