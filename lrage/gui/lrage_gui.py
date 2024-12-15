@@ -4,10 +4,9 @@ import argparse
 import pandas as pd
 import gradio as gr
 
-from lrage.gui.gui_utils.utils import (update_dropdown,
-                                       toggle_interaction_retriver,
-                                       lm_eval_avil_model_types,
-                                       lm_eval_avil_model_args)
+from lrage.gui.gui_utils.utils import (update_dropdown, toggle_interaction_retriver,
+                                       lm_eval_avil_model_types, lm_eval_avil_model_args,
+                                       retriever_args, reranker_args)
 from lrage.gui.gui_utils.tasks import get_all_tasks, get_all_devices
 from lrage.gui.gui_utils.evaluation import eval_tasks
 
@@ -54,75 +53,7 @@ if __name__ == '__main__':
                         hf_token = gr.Textbox(
                             label="Hugging Face token",
                             lines=1,
-                            value=os.getenv("HF_TOKEN") if os.getenv("HF_TOKEN") else "Enter your Hugging Face token")
-                    
-                    with gr.Group():
-
-                        with gr.Group():
-                            with gr.Column():
-                                retrieve_docs = gr.Checkbox(
-                                    value=False,
-                                    label="retrieve_docs"
-                                )
-
-                            with gr.Row():
-                                retriever = gr.Dropdown(
-                                    ["pyserini"], 
-                                    value="pyserini",
-                                    label="Retriever", 
-                                    interactive=False
-                                )
-                                top_k = gr.Number(
-                                    value=3,
-                                    label="Top k", 
-                                    interactive=False
-                                )
-
-                            retriever_args = gr.Textbox(
-                                label="Retriever args", 
-                                lines=1, 
-                                interactive=False
-                            )
-
-                            retrieve_docs.change(
-                                toggle_interaction_retriver,
-                                inputs=[retrieve_docs],
-                                outputs=[retriever, top_k, retriever_args]
-                            )
-                    
-                    with gr.Column():
-                        rerank = gr.Checkbox(
-                            value=False,
-                            label="rerank")
-                        reranker = gr.Dropdown(
-                            ["rerankers"], 
-                            value="rerankers",
-                            label="Reranker", 
-                            visible=False)
-                        reranker_args = gr.Textbox(
-                            label="Reranker args", 
-                            lines=1, 
-                            visible=False)
-
-                        rerank.change(
-                            lambda visible: [gr.update(visible=visible), gr.update(visible=visible)],
-                            inputs=[rerank],
-                            outputs=[reranker, reranker_args]
-                        )
-
-                    with gr.Accordion(label="LLM-as-a-Judge", open=False):
-                        with gr.Column():
-                            judge_model = gr.Dropdown(
-                                value=None,
-                                label="Judge Model type", 
-                                choices=lm_eval_avil_model_types)
-                            judge_model_args = gr.Textbox(
-                                value=None,
-                                label="Judge Model args", 
-                                placeholder="e.g. pretrained=meta-llama/Meta-Llama-3-8B-Instruct,trust_remote_code=True,...",
-                                lines=1)
-                
-                with gr.Column():
+                            value=os.getenv("HF_TOKEN") if os.getenv("HF_TOKEN") else "Enter your Hugging Face token: hf_...")
                     
                     with gr.Row():
                         system_instruction = gr.Textbox(
@@ -147,6 +78,74 @@ if __name__ == '__main__':
                             do_sample = gr.Checkbox(
                                 value=False,
                                 label="Do Sample")
+                
+                with gr.Column():
+                    with gr.Group():
+                        with gr.Group():
+                            with gr.Column():
+                                retrieve_docs = gr.Checkbox(
+                                    value=False,
+                                    label="retrieve_docs"
+                                )
+
+                            with gr.Row():
+                                retriever = gr.Dropdown(
+                                    ["pyserini"], 
+                                    value="pyserini",
+                                    label="Retriever", 
+                                    interactive=False
+                                )
+                                top_k = gr.Number(
+                                    value=3,
+                                    label="Top k", 
+                                    interactive=False
+                                )
+
+                            retriever_args = gr.Dropdown(
+                                retriever_args[retriever.value],
+                                value=retriever_args[retriever.value],
+                                label="Retriever args",
+                                interactive=False
+                            )
+
+                            retrieve_docs.change(
+                                toggle_interaction_retriver,
+                                inputs=[retrieve_docs],
+                                outputs=[retriever, top_k, retriever_args]
+                            )
+                    
+                    with gr.Column():
+                        rerank = gr.Checkbox(
+                            value=False,
+                            label="rerank")
+                        reranker = gr.Dropdown(
+                            ["rerankers"], 
+                            value="rerankers",
+                            label="Reranker", 
+                            visible=False)
+                        reranker_args = gr.Dropdown(
+                            reranker_args,
+                            label="Reranker args",
+                            visible=False)
+
+                        rerank.change(
+                            lambda visible: [gr.update(visible=visible), gr.update(visible=visible)],
+                            inputs=[rerank],
+                            outputs=[reranker, reranker_args]
+                        )
+
+                    with gr.Accordion(label="LLM-as-a-Judge", open=False):
+                        with gr.Column():
+                            judge_model = gr.Dropdown(
+                                value=None,
+                                label="Judge Model type", 
+                                choices=lm_eval_avil_model_types)
+                            judge_model_args = gr.Textbox(
+                                value=None,
+                                label="Judge Model args", 
+                                placeholder="e.g. pretrained=meta-llama/Meta-Llama-3-8B-Instruct,trust_remote_code=True,...",
+                                lines=1)
+                    
                     
                     with gr.Column():
                         results = gr.DataFrame(initial_df, label="Results")
