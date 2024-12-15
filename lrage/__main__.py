@@ -305,6 +305,15 @@ def setup_parser() -> argparse.ArgumentParser:
         help="Comma separated string arguments for the judge model, e.g. `pretrained=EleutherAI/pythia-160m,dtype=float32`",
     )
     parser.add_argument(
+        "--judge_gen_kwargs",
+        type=str,
+        default=None,
+        help=(
+            "String arguments for judge model generation on greedy_until tasks,"
+            " e.g. `temperature=0,top_k=0,top_p=0`."
+        ),
+    )
+    parser.add_argument(
         "--judge_device",
         type=str,
         default=None,
@@ -471,6 +480,7 @@ def cli_evaluate(args: Union[argparse.Namespace, None] = None) -> None:
         reranker_args=args.reranker_args,
         fewshot_as_multiturn=args.fewshot_as_multiturn,
         gen_kwargs=args.gen_kwargs,
+        judge_gen_kwargs=args.judge_gen_kwargs,
         task_manager=task_manager,
         verbosity=args.verbosity,
         predict_only=args.predict_only,

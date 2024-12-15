@@ -1397,7 +1397,7 @@ class ConfigurableTask(Task):
             request_type=self.OUTPUT_TYPE, doc=doc, arguments=arguments, idx=0, **kwargs
         )
 
-    def process_results(self, doc, results, lm=None):
+    def process_results(self, doc, results, doc_id=None, lm=None):
         if callable(self.config.process_results):
             return self.config.process_results(doc, results)
 
@@ -1568,18 +1568,18 @@ class ConfigurableTask(Task):
 
                     try:
                         json_judge_results = json.loads(dict_judge_results.strip())
+                        result_score = json_judge_results["Rating"]
+                        with open(f"{self.config.task}/{lm}/LLM-Eval/explanation_{doc_id}.json", 'w', encoding='utf-8') as f:
+                            json.dump(json_judge_results, f)
+
                     except json.decoder.JSONDecodeError:
                         eval_logger.warning(f"Invalid JSON format for LLM-Eval metric. Expected JSON, got {dict_judge_results}")
                         result_score = 0.0
-                        explanation = f"Invalid JSON format for LLM-Eval metric. Expected JSON, got {dict_judge_results}"
-
-                    score = json_judge_results["Rating"]
-                    explanation = json_judge_results["Explanation"]
 
                     try:
-                        result_score = float(score)
+                        result_score = float(result_score)
                     except ValueError:
-                        eval_logger.warning(f"Invalid score type for LLM-Eval metric. Expected int or float, got {type(score)}")
+                        eval_logger.warning(f"Invalid score type for LLM-Eval metric. Expected int or float, got {type(result_score)}")
                         result_score = 0.0
 
 
