@@ -62,7 +62,7 @@ if __name__ == '__main__':
                             lines=6)
 
                         with gr.Group():
-                            max_length = gr.Slider(
+                            max_new_tokens = gr.Slider(
                                 0,
                                 1024,
                                 value=512,
@@ -103,7 +103,7 @@ if __name__ == '__main__':
 
                             retriever_args = gr.Dropdown(
                                 retriever_args[retriever.value],
-                                value=retriever_args[retriever.value],
+                                value=None,
                                 label="Retriever args",
                                 interactive=False
                             )
@@ -140,12 +140,12 @@ if __name__ == '__main__':
                                 value=None,
                                 label="Judge Model type", 
                                 choices=lm_eval_avil_model_types)
-                            judge_model_args = gr.Textbox(
+                            judge_model_args = gr.Dropdown(
+                                lm_eval_avil_model_args,
                                 value=None,
-                                label="Judge Model args", 
-                                placeholder="e.g. pretrained=meta-llama/Meta-Llama-3-8B-Instruct,trust_remote_code=True,...",
-                                lines=1)
-                    
+                                label="Judge Model",
+                                scale=1)
+                            judge_model.change(update_dropdown, inputs=judge_model, outputs=judge_model_args)
                     
                     with gr.Column():
                         results = gr.DataFrame(initial_df, label="Results")
@@ -168,7 +168,7 @@ if __name__ == '__main__':
                         rerank,
                         reranker,
                         reranker_args,
-                        max_length,
+                        max_new_tokens,
                         temperature,
                         do_sample,
                         system_instruction,
