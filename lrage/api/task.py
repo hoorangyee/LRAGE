@@ -474,23 +474,24 @@ class Task(abc.ABC):
             doc_id_docs,
             total=num_docs,
         ):
-            # sample fewshot context #TODO: need to offset doc_id by rank now!
-            fewshot_ctx = self.fewshot_context(
-                doc,
-                0 if self.config.num_fewshot is None else self.config.num_fewshot,
-                system_instruction,
-                apply_chat_template,
-                fewshot_as_multiturn,
-                chat_template,
-            )
-
+            
             if retrieve_docs:
                 doc_context = query_contexts_dict[doc_id]
                 retrieved_context = doc_context.build_context()
             else:
                 retrieved_context = ""
+
+            # sample fewshot context #TODO: need to offset doc_id by rank now!
+            fewshot_ctx = self.fewshot_context(
+                doc,
+                0 if self.config.num_fewshot is None else self.config.num_fewshot,
+                system_instruction,
+                retrieved_context,
+                apply_chat_template,
+                fewshot_as_multiturn,
+                chat_template,
+            )
                     
-            fewshot_ctx = retrieved_context + fewshot_ctx
 
             # TODO: we should override self.config.repeats if doing greedy gen so users don't waste time+compute
             inst = self.construct_requests(
@@ -1065,8 +1066,8 @@ class ConfigurableTask(Task):
         doc: str,
         num_fewshot: int,
         system_instruction: Optional[str] = None,
+        retrieved_context: Optional[str] = None,
         apply_chat_template: bool = False,
-        retrieve_docs: bool = False,
         fewshot_as_multiturn: bool = False,
         chat_template: Optional[Callable] = None,
     ) -> str:
@@ -1115,6 +1116,15 @@ class ConfigurableTask(Task):
                 labeled_examples.append({"role": "system", "content": system_prompt})
             else:
                 labeled_examples = system_prompt
+        
+        if retrieved_context is not None:
+            if apply_chat_template:
+                labeled_examples.append({"role": "user ", "content": retrieved_context})
+            else:
+                if system_prompt:
+                    labeled_examples += retrieved_context
+                else:
+                    labeled_examples = retrieved_context
 
         # if few-shot - append examples after the system prompt
         if num_fewshot > 0:
