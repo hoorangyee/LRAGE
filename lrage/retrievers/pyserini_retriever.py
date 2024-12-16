@@ -23,11 +23,11 @@ class PyseriniRetriever(Retriever):
         encoder_path: Optional[str] = None,
         encoder_type: Optional[str] = None,
         tokenizer_name: Optional[str] = None,
-        device: Optional[str] = None,
         max_length: Optional[int] = None,
         pooling: Optional[str] = None, 
         l2_norm: Optional[str] = None, 
         prefix: Optional[str] = None, 
+        device: str = "cpu",
         multimodal=False
     ) -> None:
         self.retriever_type = retriever_type
@@ -161,6 +161,7 @@ class PyseriniRetriever(Retriever):
         Returns:
             List of QueryContext, one for each query
         """
+        queries = [query[:512] for query in queries]
         hits = self.searcher.batch_search(queries, q_ids, k=top_k, threads=100)
         results = []
         
