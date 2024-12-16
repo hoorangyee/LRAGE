@@ -13,8 +13,8 @@ class RetrievedDocument:
     contents: str
     
     # Class level constants for context formatting
-    CONTEXT_START: ClassVar[str] = "DOCUMENTS START\n"
-    CONTEXT_END: ClassVar[str] = "\nDOCUMENTS END\n"
+    CONTEXT_START: ClassVar[str] = "<DOCUMENTS START>\n"
+    CONTEXT_END: ClassVar[str] = "\n</DOCUMENTS END><QUESTION>\n"
     DOCUMENT_PREFIX: ClassVar[str] = "DOCUMENT"
     
     @classmethod

@@ -161,7 +161,9 @@ class PyseriniRetriever(Retriever):
         Returns:
             List of QueryContext, one for each query
         """
-        queries = [query[:512] for query in queries]
+
+        if self.retriever_type == 'dense' or self.retriever_type == 'hybrid':
+            queries = [query[:512] for query in queries]
         hits = self.searcher.batch_search(queries, q_ids, k=top_k, threads=100)
         results = []
         
