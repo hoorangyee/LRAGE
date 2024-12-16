@@ -73,7 +73,7 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
    B. Run the GUI:
    ```bash
    cd LRAGE
-   python lrage_gui.py
+   ./run_gui.sh
    ```
 
    <img width="1512" alt="image" src="assets/image.png">
