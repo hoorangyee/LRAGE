@@ -5,6 +5,10 @@ LRAGE (Legal Retrieval Augmented Generation Evaluation, pronounced as 'large') i
 
 LRAGE is developed to address the unique challenges that Legal AI researchers face, such as building and evaluating retrieval-augmented systems effectively. It seamlessly integrates datasets and tools to help researchers in evaluating LLM performance on legal tasks without cumbersome engineering overhead.
 
+You can check the demo video at [here](https://youtu.be/829Wfp4R7J8).
+
+
+
 ## Features
 
 - **Legal Domain Focused Evaluation**: LRAGE is specifically developed for evaluating LLMs in a RAG setting with datasets and document collections from the legal domain, such as [Pile-of-law](https://huggingface.co/datasets/pile-of-law/pile-of-law) and [LegalBench](https://github.com/HazyResearch/legalbench).
