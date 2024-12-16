@@ -5,7 +5,7 @@ LRAGE (Legal Retrieval Augmented Generation Evaluation, pronounced as 'large') i
 
 LRAGE is developed to address the unique challenges that Legal AI researchers face, such as building and evaluating retrieval-augmented systems effectively. It seamlessly integrates datasets and tools to help researchers in evaluating LLM performance on legal tasks without cumbersome engineering overhead.
 
-You can check the demo video at [here](https://youtu.be/829Wfp4R7J8).
+You can check the demo video at [here](https://youtu.be/1Sy8kYY03bo).
 
 
 
