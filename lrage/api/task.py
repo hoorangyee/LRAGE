@@ -3,6 +3,7 @@ import ast
 import logging
 import random
 import re
+import os
 from collections.abc import Callable
 from copy import deepcopy
 from dataclasses import asdict, dataclass
@@ -1397,7 +1398,7 @@ class ConfigurableTask(Task):
             request_type=self.OUTPUT_TYPE, doc=doc, arguments=arguments, idx=0, **kwargs
         )
 
-    def process_results(self, doc, results, doc_id=None, lm=None):
+    def process_results(self, doc, results, judge_lm=None):
         if callable(self.config.process_results):
             return self.config.process_results(doc, results)
 
@@ -1562,18 +1563,17 @@ class ConfigurableTask(Task):
                         idx=0,
                     )
 
-                    judge_results = getattr(lm, "generate_until")([judge_inst])[0]
+                    judge_results = getattr(judge_lm, "generate_until")([judge_inst])[0]
 
-                    dict_judge_results = judge_results[judge_results.find('{'):]
+                    dict_judge_results = judge_results[judge_results.find('{'):judge_results.rfind('}')+1]
 
                     try:
                         json_judge_results = json.loads(dict_judge_results.strip())
                         result_score = json_judge_results["Rating"]
-                        with open(f"{self.config.task}/{lm}/LLM-Eval/explanation_{doc_id}.json", 'w', encoding='utf-8') as f:
-                            json.dump(json_judge_results, f)
 
                     except json.decoder.JSONDecodeError:
                         eval_logger.warning(f"Invalid JSON format for LLM-Eval metric. Expected JSON, got {dict_judge_results}")
+                        json_judge_results = {"Explanation": "JSON parsing fault", "Rating": 0.0}
                         result_score = 0.0
 
                     try:
@@ -1640,8 +1640,11 @@ class ConfigurableTask(Task):
                 f"Passed invalid output_type '{self.OUTPUT_TYPE}' ! Please use one of ",
                 "'loglikelihood', 'loglikelihood_rolling', 'generate_until' or 'multiple_choice'",
             )
-
-        return result_dict
+        
+        if "LLM-Eval" in self._metric_fn_kwargs.keys():
+            return json_judge_results, result_dict
+        else:
+            return result_dict
 
     def aggregation(self) -> dict:
         return self._aggregation_list
