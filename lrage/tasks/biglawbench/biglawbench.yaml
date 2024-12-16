@@ -8,8 +8,9 @@ generation_kwargs:
 judge_generation_kwargs:
   until:
     - "</s>"
+  max_gen_toks: 1024
 test_split: train
-doc_to_text: Prompt
+doc_to_text: "{{Prompt}} <DOCUMENTS>{{Document}}</DOCUMENTS>"
 doc_to_target: ""
 doc_to_rubric: Rubric
 metric_list:

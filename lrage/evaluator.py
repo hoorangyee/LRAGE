@@ -598,9 +598,9 @@ def evaluate(
             )
             for doc_id, doc in doc_iterator:
                 requests = instances_by_doc_id[doc_id]
-                if task.config.doc_to_rubric is not None:
-                    metrics = task.process_results(
-                        doc, [req.filtered_resps[filter_key] for req in requests], doc_id, judge_lm, 
+                if "LLM-Eval" in task._metric_fn_kwargs.keys():
+                    json_judge_results, metrics = task.process_results(
+                        doc, [req.filtered_resps[filter_key] for req in requests], judge_lm
                     )
                 else:
                     metrics = task.process_results(
@@ -629,6 +629,8 @@ def evaluate(
                         "target_hash": hash_string(str(target)),
                     }
                     example.update(metrics)
+                    if "LLM-Eval" in task._metric_fn_kwargs.keys():
+                        example.update(json_judge_results)
                     task_output.logged_samples.append(example)
                 for metric, value in metrics.items():
                     task_output.sample_metrics[(metric, filter_key)].append(value)
