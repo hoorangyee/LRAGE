@@ -128,7 +128,9 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
 
 ## Basic Usage
 
-The basic usage follows the [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) documentation. Below is a detailed guide for using the LRAGE CLI.
+The basic usage follows the [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) documentation. 
+
+Below is a detailed guide for using the LRAGE CLI.
 
 ### CLI Arguments
 
