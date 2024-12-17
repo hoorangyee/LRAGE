@@ -98,7 +98,7 @@ class PyseriniRetriever(Retriever):
         elif retriever_type == 'sparse':
             if sparse_index_path is None or encoder_path is None:
                 raise ValueError("SparseRetriever requires an sparse_index_path and encoder_path")
-            return LuceneImpactSearcher.from_prebuilt_index(sparse_index_path) if sparse_index_path in IMPACT_INDEX_INFO else LuceneImpactSearcher(sparse_index_path)
+            return LuceneImpactSearcher.from_prebuilt_index(sparse_index_path, encoder=encoder_path) if sparse_index_path in IMPACT_INDEX_INFO else LuceneImpactSearcher(sparse_index_path, encoder=encoder_path)
         elif retriever_type == 'dense':
             if faiss_index_path is None or encoder_path is None:
                 raise ValueError("DenseRetriever requires faiss_index_path and encoder_path")
