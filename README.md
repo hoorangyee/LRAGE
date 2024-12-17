@@ -334,7 +334,7 @@ Contributions and community engagement are welcome! We value your input in makin
 ```
 @Misc{lrage,
   title =        {LARGE: Legal Retrieval Augmented Generation Evaluation Tool},
-  author =       {Minhu Park and Wonseok Hwang},
+  author =       {Minhu Park, Hongseok Oh and Wonseok Hwang},
   howpublished = {\url{https://github.com/hoorangyee/LRAGE}},
   year =         {2024}
 }   
