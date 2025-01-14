@@ -5,6 +5,8 @@ LRAGE (Legal Retrieval Augmented Generation Evaluation, pronounced as 'large') i
 
 LRAGE is developed to address the unique challenges that Legal AI researchers face, such as building and evaluating retrieval-augmented systems effectively. It seamlessly integrates datasets and tools to help researchers in evaluating LLM performance on legal tasks without cumbersome engineering overhead.
 
+The submission version for NAACL can be found in this [tag](https://github.com/hoorangyee/LRAGE/tree/naacl).
+
 You can check the demo video at [here](https://youtu.be/1Sy8kYY03bo).
 
 
@@ -334,7 +336,7 @@ Contributions and community engagement are welcome! We value your input in makin
 ```
 @Misc{lrage,
   title =        {LARGE: Legal Retrieval Augmented Generation Evaluation Tool},
-  author =       {Minhu Park, Hongseok Oh and Wonseok Hwang},
+  author =       {Minhu Park, Hongseok Oh, and Wonseok Hwang},
   howpublished = {\url{https://github.com/hoorangyee/LRAGE}},
   year =         {2024}
 }   
