@@ -36,8 +36,10 @@ flowchart TD
     E -->|Context Retrieval| F[Reranker Module]
     
     F -->|Context Refinement| J[Language Model]
-    J -->|Response Generation| M[Instance-level Rubrics]
-    J -->|Response Generation| N[Metric Calculation]
+    
+    J -->|Response Generation| K[evaluator.py]
+    K --> M[Instance-level Rubrics]
+    K --> N[Metric Calculation]
     
     M --> O[Detailed Logs]
     N --> P[Aggregated Scores]
