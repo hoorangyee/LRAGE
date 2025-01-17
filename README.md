@@ -49,6 +49,7 @@ flowchart TD
     
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style J fill:#bbf,stroke:#333,stroke-width:2px
+    style K fill:#ffd700,stroke:#333,stroke-width:2px
     style Q fill:#ff9,stroke:#333,stroke-width:2px
 
     linkStyle default stroke-width:2px
