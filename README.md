@@ -26,45 +26,34 @@ You can check the demo video at [here](https://youtu.be/1Sy8kYY03bo).
 ## Extensions for RAG Evaluation from [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)
 
 ```mermaid
-graph TB
-    subgraph LRAGE ["LRAGE Extensions"]
-        API[lrage/api]
-        RT[Retriever Abstract Class]
-        RR[Reranker Abstract Class]
-        TR[Task with RAG]
-        LJ[LLM-as-Judge]
-        
-        subgraph Implementations
-            PR[Pyserini Retriever]
-            RER[Rerankers Reranker]
-        end
-        
-        API --> RT
-        API --> RR
-        API --> TR
-        
-        RT --> PR
-        RR --> RER
-        
-        TR --> |build_all_requests| FLOW[Document Flow]
-        FLOW --> | Retrieval| RT
-        FLOW --> | Reranking| RR
-        FLOW --> | LLM Response| LLM
-        
-        TR --> |process_results| LJ
-    end
+graph TD
+    A[Input Dataset] --> B[Task Processing]
+    B --> C{Build Requests}
     
-    subgraph lm-evaluation-harness
-        LM[LM Abstract Class]
-        IMPL[HF/vLLM Implementations]
-        
-        LM --> IMPL
-        IMPL --> LLM[LLM Interface]
-    end
+    C --> D[Query Generation]
+    D --> E[Retriever Module]
+    E --> F[Document Retrieval]
     
-    style LRAGE fill:#e6f3ff,stroke:#4a90e2
-    style lm-evaluation-harness fill:#f5f5f5,stroke:#666
-    style Implementations fill:#f0f9ff,stroke:#4a90e2
+    F --> G[Reranker Module]
+    G --> H[Context Refinement]
+    
+    H --> J[Language Model]
+    J --> K[Generate Response]
+    
+    K --> L[LLM-as-Judge Evaluation]
+    L --> M[Instance-level Rubrics]
+    L --> N[Metric Calculation]
+    
+    M --> O[Detailed Logs]
+    N --> P[Aggregated Scores]
+    
+    O --> Q[Final Evaluation Results]
+    P --> Q
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style J fill:#bbf,stroke:#333,stroke-width:2px
+    style L fill:#bfb,stroke:#333,stroke-width:2px
+    style Q fill:#ff9,stroke:#333,stroke-width:2px
 ```
 
 1.	**Addition of Retriever and Reranker abstract classes**: LRAGE introduces [retriever](https://github.com/hoorangyee/LRAGE/blob/main/lrage/api/retriever.py) and [reranker](https://github.com/hoorangyee/LRAGE/blob/main/lrage/api/reranker.py) abstract classes in the [lrage/api/](https://github.com/hoorangyee/LRAGE/tree/main/lrage/api). These additions allow the process of building requests in the [api.task.Task](https://github.com/hoorangyee/LRAGE/blob/b24b7dc253fdfaa82cd926d1d1147f8a18ec69bf/lrage/api/task.py#L179) class’s [build_all_requests()](https://github.com/hoorangyee/LRAGE/blob/b24b7dc253fdfaa82cd926d1d1147f8a18ec69bf/lrage/api/task.py#L376) method to go through both retrieval and reranking steps, enhancing the evaluation process for RAG.  
