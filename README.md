@@ -25,38 +25,7 @@ You can check the demo video at [here](https://youtu.be/1Sy8kYY03bo).
 
 ## Extensions for RAG Evaluation from [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)
 
-```mermaid
-%%{init: {'theme': 'default', 'themeVariables': { 'fontSize': '14px'}, "flowchart": {"nodeSpacing": 15, "rankSpacing": 20, "htmlLabels": true}} }%%
-
-flowchart TD
-    A[Input Dataset] --> B[Task Processing]
-    B --> D[Query Generation]
-    
-    D -->|Document Retrieval| E[Retriever Module]
-    E -->|Context Retrieval| F[Reranker Module]
-    
-    F -->|Context Refinement| J[Language Model]
-    
-    J -->|Response Generation| K[evaluator.py]
-    K --> M[Instance-level Rubrics]
-    K --> N[Metric Calculation]
-    
-    M --> O[Detailed Logs]
-    N --> P[Aggregated Scores]
-    
-    O --> Q[Final Evaluation Results]
-    P --> Q
-    
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style J fill:#bbf,stroke:#333,stroke-width:2px
-    style K fill:#ffd700,stroke:#333,stroke-width:2px
-    style Q fill:#ff9,stroke:#333,stroke-width:2px
-
-    linkStyle default stroke-width:2px
-    
-    classDef default fill:#fff,stroke:#333,stroke-width:1px
-    classDef node text-align:center
-```
+<img src="assets/LRAGE_intro.png" width="600">
 
 1.	**Addition of Retriever and Reranker abstract classes**: LRAGE introduces [retriever](https://github.com/hoorangyee/LRAGE/blob/main/lrage/api/retriever.py) and [reranker](https://github.com/hoorangyee/LRAGE/blob/main/lrage/api/reranker.py) abstract classes in the [lrage/api/](https://github.com/hoorangyee/LRAGE/tree/main/lrage/api). These additions allow the process of building requests in the [api.task.Task](https://github.com/hoorangyee/LRAGE/blob/b24b7dc253fdfaa82cd926d1d1147f8a18ec69bf/lrage/api/task.py#L179) class’s [build_all_requests()](https://github.com/hoorangyee/LRAGE/blob/b24b7dc253fdfaa82cd926d1d1147f8a18ec69bf/lrage/api/task.py#L376) method to go through both retrieval and reranking steps, enhancing the evaluation process for RAG.  
 
