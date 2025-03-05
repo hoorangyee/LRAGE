@@ -1,0 +1,21 @@
+task: plat_essay
+dataset_path: sma1-rmarud/PLAT
+dataset_name: essay
+output_type: generate_until
+test_split: test
+generation_kwargs:
+  until:
+    - "</s>"
+  max_gen_toks: 128
+judge_generation_kwargs:
+  until:
+    - "</s>"
+  max_gen_toks: 128
+doc_to_text: !function utils_plat.doc_to_text_essay
+doc_to_target: ""
+doc_to_rubric: !function utils_plat.doc_to_rubric_essay
+metric_list:
+  - metric: LLM-Eval
+    aggregation: mean
+    higher_is_better: true
+    max_score: 10

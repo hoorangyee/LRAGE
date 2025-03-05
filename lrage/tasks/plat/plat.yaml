@@ -1,0 +1,4 @@
+group: plat
+task:
+  - plat_mc
+  - plat_essay
