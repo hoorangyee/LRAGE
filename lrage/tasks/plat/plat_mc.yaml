@@ -1,0 +1,21 @@
+task: plat_mc
+dataset_path: sma1-rmarud/PLAT
+dataset_name: mc
+output_type: generate_until
+test_split: test
+generation_kwargs:
+  until:
+    - "</s>"
+  max_gen_toks: 32
+doc_to_text: !function utils_plat.doc_to_text_mc
+doc_to_target: !function utils_plat.doc_to_target_mc
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+filter_list:
+  - name: "get-answer"
+    filter:
+      - function: "regex"
+        regex_pattern: '(적법함|적법하지 않음|알 수 없음)'
+      - function: "take_first"
