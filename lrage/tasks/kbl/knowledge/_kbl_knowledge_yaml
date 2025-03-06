@@ -1,6 +1,4 @@
-tag:
-  - kbl
-  - kbl_knowledge_em
+group: kbl_knowledge_em
 description: '당신은 사용자의 질문에 친절하고 논리적으로 답변해 주는 법률 전문가 챗봇 입니다.\n'
 dataset_path: lbox/kbl
 test_split: test
