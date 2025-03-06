@@ -15,6 +15,7 @@ class RerankersReranker(Reranker):
         self,
         reranker_type: str,
         reranker_path: Optional[str] = None,
+        api_key: Optional[str] = None
     ) -> None:
         """
         Initialize the RerankersReranker.
@@ -23,11 +24,14 @@ class RerankersReranker(Reranker):
             reranker_type: Type of reranker to use
             reranker_path: Optional path to reranker model
         """
-        self.reranker_type = reranker_type
+        rerankers_args = {
+            "model_type": reranker_type
+        }
         if reranker_path is not None:
-            self.reranker = rerankers.Reranker(reranker_type, reranker_path)
-        else:
-            self.reranker = rerankers.Reranker(reranker_type)
+            rerankers_args["model_name"] = reranker_path
+        if api_key is not None:
+            rerankers_args["api_key"] = api_key
+        self.reranker = rerankers.Reranker(**rerankers_args)
 
     def _postprocess_results(self, results: Any) -> QueryContext:
         """
