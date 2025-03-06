@@ -12,5 +12,5 @@ def doc_to_text_mc(doc) -> str:
     return text
 
 def doc_to_target_mc(doc) -> str:
-    target = "적법함" if doc["laufulness"] else "적법하지 않음"
+    target = "적법함" if doc["lawfulness"] else "적법하지 않음"
     return target
