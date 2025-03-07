@@ -6,15 +6,18 @@ import cn2an
 def doc_to_target_3_4(doc) -> str:
     answer = doc["answer"].replace("刑期:", "")
     answer = answer.replace("个月", "")
-    answer_digit = int(answer)
     
-    return answer_digit
+    return answer
 
 def lawbench_3_4_log_distance(predictions, references):
     
     prediction = predictions[0]
     reference = references[0]
-    
+    if "死刑" in reference or "无期" in reference:
+        # TODO: data imperfection
+        return 0.0
+    reference = float(reference)
+
     score_list, abstentions = [], 0
 
     prediction = cn2an.transform(prediction, "cn2an")

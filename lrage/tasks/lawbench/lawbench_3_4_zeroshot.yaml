@@ -1,6 +1,6 @@
-task: lawbench_3_3_zeroshot
+task: lawbench_3_4_zeroshot
 dataset_path: doolayer/LawBench
-dataset_name: 3-3
+dataset_name: 3-4
 output_type: generate_until
 test_split: test
 generation_kwargs:
