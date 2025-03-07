@@ -1,5 +1,4 @@
-def multi_choice_judge_1_2(prediction, answer_token):
-    option_list = ["A", "B", "C", "D"]
+def multi_choice_judge_1_2(prediction, option_list, answer_token):
     # a dict, key: letters in the option list, value: count of the letter in the prediction
     count_dict, abstention, accuracy = {}, 0, 0
     for option in option_list:
