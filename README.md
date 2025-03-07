@@ -40,23 +40,22 @@ You can check the demo video at [here](https://youtu.be/1Sy8kYY03bo).
 
 3. **Integration of LLM-as-a-judge**: LRAGE modifies [ConfigurableTask.process_results](https://github.com/hoorangyee/LRAGE/blob/479534d59a95b2b0c7cc37fd4c0db574418c61da/lrage/api/task.py#L1528) to support 'LLM-Eval' metrics, enabling a more nuanced evaluation of RAG outputs by utilizing language models as judges.
 
-## Prerequisites
-
-- JDK 21 is required to use the Pyserini retriever
-    ```bash
-    conda config --add channels conda-forge
-    conda install openjdk=21
-    ```
-
 ## Installation
 
-1. Clone the repository:
+1. Create conda environment:
+    ```bash
+    conda create -n lrage python=3.10 -y
+    conda activate lrage
+    ```
+
+2. Clone the repository:
     ```bash
     git clone https://github.com/hoorangyee/LRAGE.git
-    cd LRAGE
+    cd LRAGE/
     ```
-2. Install:
+3. Install:
     ```bash
+    conda install -c conda-forge openjdk=21 -y # JDK 21 is required to use the Pyserini retriever
     pip install -e .
     ```
 

@@ -1,0 +1,6 @@
+group: lawbench
+task:
+  - lawbench_1_2_zeroshot
+  - lawbench_3_1_zeroshot
+  - lawbench_3_3_zeroshot
+  - lawbench_3_6_zeroshot

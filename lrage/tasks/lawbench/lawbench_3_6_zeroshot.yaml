@@ -1,0 +1,15 @@
+task: lawbench_3_6_zeroshot
+dataset_path: doolayer/LawBench
+dataset_name: 3-6
+output_type: generate_until
+test_split: test
+generation_kwargs:
+  until:
+    - "</s>"
+  max_gen_toks: 128
+doc_to_text: !function utils_lawbench.doc_to_text
+doc_to_target: !function utils_lawbench_3_6.doc_to_target_3_6
+metric_list:
+  - metric: !function utils_lawbench_3_6.judge_mc_3_6
+    aggregation: mean
+    higher_is_better: true
