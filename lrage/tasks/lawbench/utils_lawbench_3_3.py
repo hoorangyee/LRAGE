@@ -42,6 +42,9 @@ option_list_lawbench_3_3 = ["侮辱", "违法发放贷款", "失火", "票据诈
                             "受贿", "聚众哄抢", "交通肇事"]
 
 def lawbench_3_3_f1_score(predictions, references):
+    predictions = predictions[0]
+    references = references[0]
+    
     prediction_list =[]
     for option in option_list_lawbench_3_3:
         if option in predictions:
