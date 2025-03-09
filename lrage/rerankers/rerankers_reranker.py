@@ -32,7 +32,7 @@ class RerankersReranker(Reranker):
         if api_key is not None:
             rerankers_args["api_key"] = api_key
 
-        if len(rerankers_args.keys()) == 1:
+        if len(rerankers_args.keys()) == 1 and "model_type" in rerankers_args.keys():
             self.reranker =  rerankers.Reranker(rerankers_args["model_type"])
         else:
             self.reranker = rerankers.Reranker(**rerankers_args)
