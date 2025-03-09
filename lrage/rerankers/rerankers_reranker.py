@@ -31,7 +31,11 @@ class RerankersReranker(Reranker):
             rerankers_args["model_name"] = reranker_path
         if api_key is not None:
             rerankers_args["api_key"] = api_key
-        self.reranker = rerankers.Reranker(**rerankers_args)
+
+        if len(rerankers_args.keys()) == 1:
+            self.reranker =  rerankers.Reranker(rerankers_args["model_type"])
+        else:
+            self.reranker = rerankers.Reranker(**rerankers_args)
 
     def _postprocess_results(self, results: Any) -> QueryContext:
         """
