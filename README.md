@@ -276,6 +276,45 @@ For now, you have three options:
 2. Use our prebuilt Pile-of-law-mini indexes
 3. Create your own index by following [Pyserini's indexing documentation](https://github.com/castorini/pyserini/blob/master/docs/usage-index.md)
 
+#### How to Index a New Corpus Using Pyserini  
+
+3-1. Prepare the data file `docs.json` in the following format:  
+
+```json
+[
+  {
+    "id": "doc1",
+    "contents": "contents of doc one."
+  },
+  {
+    "id": "doc2",
+    "contents": "contents of document two."
+  },
+  ...
+]
+```
+
+3-2. Store the prepared data in the following directory structure.
+
+```
+📂 data
+├── 📂 input
+│   └── docs.json
+└── 📂 index
+```
+
+3-3. Run the following script.
+
+```bash
+python -m pyserini.index.lucene \
+  --collection JsonCollection \
+  --input data/input \
+  --index data/index \
+  --generator DefaultLuceneDocumentGenerator \
+  --threads 1 \
+  --storePositions --storeDocvectors --storeRaw
+```
+
 ## Pre-compiled indexes for the legal domain
 
 **Note**: We will soon share the pre-compiled Pile-of-law BM25 index and a mini-index containing approximately 1/10 of the data. Additionally, we plan to provide pre-compiled indexes for other legal domain document collections that can be used in RAG settings.
