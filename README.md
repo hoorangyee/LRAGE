@@ -332,8 +332,8 @@ python -m pyserini.index.lucene \
 - [x] Update pyserini_retriever to support Pyserini prebuilt index
 - [x] Develop a GUI Demo for easier access and visualization
 - [x] Document more detailed usage instructions
-- [x] Publish and share Pile-of-law BM25 index
-- [ ] Publish and share Pile-of-law chunks
+- [x] [Publish and share Pile-of-law BM25 index](https://huggingface.co/datasets/hoorangyee/pile-of-law-bm25)
+- [x] [Publish and share Pile-of-law chunks](https://huggingface.co/datasets/hoorangyee/pile-of-law-chunked)
 - [ ] Publish and share Pile-of-law embeddings
 - [ ] Implement a simplified indexing feature in GUI
 - [ ] Publish benchmark results obtained using LRAGE
