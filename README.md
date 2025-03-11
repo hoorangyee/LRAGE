@@ -317,7 +317,14 @@ python -m pyserini.index.lucene \
 
 ## Pre-compiled indexes for the legal domain
 
-**Note**: We will soon share the pre-compiled Pile-of-law BM25 index and a mini-index containing approximately 1/10 of the data. Additionally, we plan to provide pre-compiled indexes for other legal domain document collections that can be used in RAG settings.
+- [pile-of-law-subsets-bm25](https://huggingface.co/datasets/hoorangyee/pile-of-law-bm25)
+  - ```
+    {
+        "legal-case-opinions": ["courtlistener_opinions","tax_rulings", "canadian_decisions", "echr"],
+        "laws": ["uscode", "state_codes", "cfr","eurlex", "tax_rulings"],
+        "study-materials": ["cc_casebooks"]
+    }
+    ```
 
 ## Roadmap
 
@@ -325,8 +332,8 @@ python -m pyserini.index.lucene \
 - [x] Update pyserini_retriever to support Pyserini prebuilt index
 - [x] Develop a GUI Demo for easier access and visualization
 - [x] Document more detailed usage instructions
+- [x] Publish and share Pile-of-law BM25 index
 - [ ] Publish and share Pile-of-law chunks
-- [ ] Publish and share Pile-of-law BM25 index
 - [ ] Publish and share Pile-of-law embeddings
 - [ ] Implement a simplified indexing feature in GUI
 - [ ] Publish benchmark results obtained using LRAGE
