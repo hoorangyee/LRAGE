@@ -262,7 +262,8 @@ def simple_evaluate(
             judge_lm = None
     else:
         judge_lm = None
-
+    
+    retriever_name_log = None
     if retrieve_docs:
         if isinstance(retriever, str):
             if retriever_args is None:
@@ -277,6 +278,7 @@ def simple_evaluate(
                 retriever_args
             )
 
+    reranker_name_log = None
     if rerank:
         if isinstance(reranker, str):
             if reranker_args is None:
