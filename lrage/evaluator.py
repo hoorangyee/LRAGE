@@ -418,6 +418,12 @@ def simple_evaluate(
                 "numpy_seed": numpy_random_seed,
                 "torch_seed": torch_random_seed,
                 "fewshot_seed": fewshot_random_seed,
+                "apply_chat_template": apply_chat_template,
+                "retriever": retriever,
+                "retriever_args": retriever_args,
+                "rerank": rerank,
+                "reranker": reranker,
+                "reranker_args": reranker_args,
             }
         )
         results["git_hash"] = get_git_commit_hash()
