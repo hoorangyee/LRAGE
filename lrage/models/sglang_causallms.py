@@ -337,6 +337,12 @@ class SGLangLM(TemplateLM):
     def max_gen_toks(self):
         # Return the maximum number of tokens for generation
         return self._max_gen_toks
+    
+
+    @property
+    def chat_template(self):
+        
+        return self.tokenizer.chat_template
 
     def tok_encode(
         self,
@@ -375,27 +381,6 @@ class SGLangLM(TemplateLM):
 
         Returns:
             str: The name of the model's tokenizer and/or chat template.
-        """
-        pass
-
-    def chat_template(self, chat_template: Union[bool, str] = False) -> str:
-        """
-        Get the appropriate chat template for the model based on the `chat_template` argument.
-
-        This method returns the chat template string to build the prompt from a chat history.
-        The chat template is saved in the evaluation results for reproducibility.
-        Boolean arguments should be used with models that have only one chat template,
-        while string arguments are used with models that have multiple chat templates.
-        For the reference implementation, see HFLM class in `lrage.models.huggingface`.
-
-        Args:
-            chat_template (Union[bool, str]): Specifies whether to apply a chat template:
-                - If False: Do not apply any chat template.
-                - If True: Apply the default chat template.
-                - If str: Apply the specified chat template by name.
-
-        Returns:
-            str: The selected chat template in Jinja format.
         """
         pass
 
