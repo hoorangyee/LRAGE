@@ -103,6 +103,7 @@ Below is a detailed guide for using the LRAGE CLI.
 
 #### Required Arguments
 - `--model`, `-m`: Name of the model to use (e.g., `hf` for HuggingFace models)
+  - we are supportting now hf, vllm, sglang([beta](https://github.com/EleutherAI/lm-evaluation-harness?tab=readme-ov-file#tensor--data-parallel-and-fast-offline-batching-inference-with-sglang)), etc.
 - `--tasks`, `-t`: Names of tasks to evaluate (comma-separated)
   - To see available tasks: `lrage --tasks list`
 

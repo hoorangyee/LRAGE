@@ -664,3 +664,20 @@ def configure_pad_token(
             tokenizer.add_special_tokens({"pad_token": "<|pad|>"})
 
     return tokenizer
+
+def handle_stop_sequences(
+    until: Union[str, List[str], None], eos: Optional[str]
+) -> List[str]:
+    """Ensures that the `until` parameter is a list of stop sequences and includes the EOS token."""
+    if isinstance(until, str):
+        until = [until]
+    elif until is None:
+        until = []
+    elif not isinstance(until, list):
+        raise ValueError(
+            f"Expected `kwargs['until']` to be of type Union[str,list] but got {until}"
+        )
+
+    if eos is not None and eos not in until:
+        until.append(eos)
+    return until
