@@ -34,7 +34,7 @@ def lawbench_3_1_f1_score(predictions, references):
         prediction_law_index_digit = int(prediction_law_section_numbers[0])
         prediction_law_index_digit_list.append(prediction_law_index_digit)
     
-    gt_set = set(references)
+    gt_set = set(map(int, references))
     pred_set = set(prediction_law_index_digit_list)
 
     precision = len(gt_set.intersection(pred_set)) / len(pred_set) if len(pred_set) != 0 else 0
