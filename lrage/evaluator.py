@@ -272,6 +272,7 @@ def simple_evaluate(
             eval_logger.info(
                 f"Initializing {retriever} retriever, with arguments: {simple_parse_args_string(retriever_args)}"
             )
+            retriever_name_log = retriever
             retriever = lrage.api.registry.get_retriever(retriever).create_from_arg_string(
                 retriever_args
             )
@@ -285,6 +286,7 @@ def simple_evaluate(
             eval_logger.info(
                 f"Initializing {reranker} reranker, with arguments: {simple_parse_args_string(reranker_args)}"
             )
+            reranker_name_log = reranker
             reranker = lrage.api.registry.get_reranker(reranker).create_from_arg_string(
                 reranker_args
             )
@@ -418,6 +420,13 @@ def simple_evaluate(
                 "numpy_seed": numpy_random_seed,
                 "torch_seed": torch_random_seed,
                 "fewshot_seed": fewshot_random_seed,
+                "apply_chat_template": apply_chat_template,
+                "retrieve_docs": retrieve_docs,
+                "retriever": retriever_name_log,
+                "retriever_args": retriever_args,
+                "rerank": rerank,
+                "reranker": reranker_name_log,
+                "reranker_args": reranker_args,
             }
         )
         results["git_hash"] = get_git_commit_hash()
