@@ -9,7 +9,7 @@ The submission version for NAACL can be found in this [tag](https://github.com/h
 
 You can check the demo video at [here](https://youtu.be/1Sy8kYY03bo).
 
-
+You can check out our GUI demo directly on [HF Spaces](https://huggingface.co/spaces/wonseok-uos/LRAGE).
 
 ## Features
 
