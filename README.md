@@ -218,7 +218,7 @@ Below is a detailed guide for using the LRAGE CLI.
 
 ### Example Commands
 
-1-1. Basic BM25 Evaluation with huggingface:
+1-1-hf. Basic BM25 Evaluation with huggingface:
 ```bash
 lrage \
 --model hf \
