@@ -218,13 +218,26 @@ Below is a detailed guide for using the LRAGE CLI.
 
 ### Example Commands
 
-1. Basic BM25 Evaluation:
+1-1-hf. Basic BM25 Evaluation with huggingface:
 ```bash
 lrage \
 --model hf \
 --model_args pretrained=meta-llama/Llama-3.1-8B \
 --tasks legalbench_tiny \
 --batch_size 8 \
+--device cuda \
+--retrieve_docs \
+--retriever pyserini \
+--retriever_args retriever_type=bm25,bm25_index_path=msmarco-v1-passage
+```
+
+1-2-vllm. Basic BM25 Evaluation with vllm:
+```bash
+lrage \
+--model vllm \
+--model_args pretrained=meta-llama/Llama-3.1-8B,tensor_parallel_size=1,dtype=auto,gpu_memory_utilization=0.8,data_parallel_size=4 \
+--tasks legalbench_tiny \
+--batch_size auto \
 --device cuda \
 --retrieve_docs \
 --retriever pyserini \
