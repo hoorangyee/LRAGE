@@ -231,7 +231,7 @@ lrage \
 --retriever_args retriever_type=bm25,bm25_index_path=msmarco-v1-passage
 ```
 
-1-2. Basic BM25 Evaluation with vllm:
+1-2-vllm. Basic BM25 Evaluation with vllm:
 ```bash
 lrage \
 --model vllm \
