@@ -9,6 +9,7 @@ from . import (
     neuron_optimum,
     openai_completions,
     optimum_lm,
+    smolagents_lm,
     textsynth,
     vllm_causallms,
     sglang_causallms,

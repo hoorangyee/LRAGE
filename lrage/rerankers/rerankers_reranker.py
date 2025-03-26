@@ -76,11 +76,8 @@ class RerankersReranker(Reranker):
         Returns:
             QueryContext containing ranked documents
         """
-        # Convert all doc_ids to strings for consistency
         doc_ids = [str(doc_id) for doc_id in doc_ids]
         
-        # Run reranking
         results = self.reranker.rank(query, docs, doc_ids)
         
-        # Process results
         return self._postprocess_results(results)

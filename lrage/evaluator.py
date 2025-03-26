@@ -26,6 +26,8 @@ from lrage.evaluator_utils import (
 from lrage.loggers import EvaluationTracker
 from lrage.loggers.utils import add_env_info, add_tokenizer_info, get_git_commit_hash
 from lrage.tasks import TaskManager, get_task_dict
+from lrage.tools.retriever_tool import RetrieverTool
+from lrage.tools.reranker_tool import RerankerTool
 from lrage.utils import (
     eval_logger,
     handle_non_serializable,
@@ -191,22 +193,60 @@ def simple_evaluate(
         if judge_gen_kwargs == "":
             judge_gen_kwargs = None
 
+    if retrieve_docs:
+        if isinstance(retriever, str):
+            if retriever_args is None:
+                eval_logger.warning("retriever_args not specified. Using defaults.")
+                retriever_args = ""
+
+            eval_logger.info(
+                f"Initializing {retriever} retriever, with arguments: {simple_parse_args_string(retriever_args)}"
+            )
+            retriever = lrage.api.registry.get_retriever(retriever).create_from_arg_string(
+                retriever_args
+            )
+
+    if rerank:
+        if isinstance(reranker, str):
+            if reranker_args is None:
+                eval_logger.warning("reranker_args not specified. Using defaults.")
+                reranker_args = ""
+
+            eval_logger.info(
+                f"Initializing {reranker} reranker, with arguments: {simple_parse_args_string(reranker_args)}"
+            )
+            reranker = lrage.api.registry.get_reranker(reranker).create_from_arg_string(
+                reranker_args
+            )
+
     if isinstance(model, str):
         if model_args is None:
             eval_logger.warning("model_args not specified. Using defaults.")
             model_args = ""
 
+        additional_config = {
+            "batch_size": batch_size,
+            "max_batch_size": max_batch_size,
+            "device": device,
+        }
+        if model == "codeagent":
+            tools = []
+            if retrieve_docs:
+                tools.append(RetrieverTool(retriever=retriever))
+                if rerank:
+                    tools.append(RerankerTool(reranker=reranker))
+            additional_config.update(
+                {
+                    "tools": tools,
+                }
+            )
         if isinstance(model_args, dict):
             eval_logger.info(
                 f"Initializing {model} model, with arguments: {model_args}"
             )
             lm = lrage.api.registry.get_model(model).create_from_arg_obj(
                 model_args,
-                {
-                    "batch_size": batch_size,
-                    "max_batch_size": max_batch_size,
-                    "device": device,
-                },
+                additional_config,
             )
 
         else:
@@ -215,11 +255,7 @@ def simple_evaluate(
             )
             lm = lrage.api.registry.get_model(model).create_from_arg_string(
                 model_args,
-                {
-                    "batch_size": batch_size,
-                    "max_batch_size": max_batch_size,
-                    "device": device,
-                },
+                additional_config,
             )
     else:
         if not isinstance(model, lrage.api.model.LM):
