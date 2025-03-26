@@ -1,0 +1,18 @@
+task: barexam_qa
+dataset_path: reglab/barexam_qa
+dataset_name: qa
+output_type: multiple_choice
+training_split: train
+validation_split: validation
+test_split: test
+doc_to_text: "{{prompt}}\n\n{{question}}\nA) {{choice_a}}\nB) {{choice_b}}\nC) {{choice_c}}\nD) {{choice_d}}\n\nAnswer:"
+doc_to_target: "{{answer}}"
+doc_to_choice:
+- "A"
+- "B"
+- "C"
+- "D"
+metric_list:
+- metric: acc
+  aggregation: mean
+  higher_is_better: true

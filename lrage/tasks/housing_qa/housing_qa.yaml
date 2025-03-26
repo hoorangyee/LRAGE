@@ -1,0 +1,17 @@
+task: housing_qa
+dataset_path: reglab/housing_qa
+dataset_name: questions
+test_split: test
+output_type: multiple_choice
+doc_to_text: "Consider statutory law for {{state}} in the year 2021. {{question}}
+
+Answer \"Yes\" or \"No\".
+Answer: "
+doc_to_target: "{{answer}}"
+doc_to_choice:
+- "Yes"
+- "No"
+metric_list:
+- metric: acc
+  aggregation: mean
+  higher_is_better: true
