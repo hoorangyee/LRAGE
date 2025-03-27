@@ -8,28 +8,12 @@ eval_logger = logging.getLogger(__name__)
 @register_model("codeagent")
 class CodeAgentLM(TemplateLM):
     """
-    An LM-evaluation-harness compatible wrapper for smolagents.CodeAgent.
+    An LRAGE compatible wrapper for smolagents.CodeAgent.
     
-    This wrapper allows CodeAgent to be used with lm-evaluation-harness by implementing
+    This wrapper allows CodeAgent to be used with LRAGE by implementing
     the LM interface. It primarily supports the generate_until method using the
     CodeAgent's run capabilities and attempts to delegate the loglikelihood methods
     to the underlying model when possible.
-    
-    Example usage:
-        ```python
-        from smolagents import CodeAgent
-        from lm_eval import evaluator, tasks
-        from my_module import CodeAgentLM
-        
-        # Create a CodeAgent with your desired configuration
-        agent = CodeAgent(...)
-        
-        # Wrap it for evaluation
-        model = CodeAgentLM(agent=agent)
-        
-        # Run evaluation
-        results = evaluator.evaluate(model, tasks=["hellaswag"])
-        ```
     """
     
     def __init__(
