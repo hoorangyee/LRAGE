@@ -12,7 +12,7 @@ class RetrieverTool(Tool):
         "top_k": {
             "type": "integer",
             "description": "Number of top documents to retrieve",
-            "default": 3
+            "nullable": False,
         }
     }
     output_type = "string"

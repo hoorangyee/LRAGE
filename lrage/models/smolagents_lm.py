@@ -1,9 +1,9 @@
-from lm_eval.api.model import TemplateLM
-from lm_eval.api.registry import register_model
+from lrage.api.model import TemplateLM, LM
+from lrage.api.registry import register_model
 from typing import List, Tuple, Optional, Dict, Any, Union
 import logging
 
-eval_logger = logging.getLogger("lm-eval")
+eval_logger = logging.getLogger(__name__)
 
 @register_model("codeagent")
 class CodeAgentLM(TemplateLM):
@@ -57,7 +57,7 @@ class CodeAgentLM(TemplateLM):
         
         if model is None:
             raise ValueError("model must be provided")
-            
+        
         self.agent = CodeAgent(
             tools=tools,
             model=model,
@@ -102,6 +102,9 @@ class CodeAgentLM(TemplateLM):
             
         raise NotImplementedError("Tokenization not supported by this model")
     
+    def _loglikelihood_tokens(self, requests, **kwargs):
+        raise NotImplementedError("CodeAgentLM._loglikelihood_tokens() is not supported")
+
     def loglikelihood(self, requests) -> List[Tuple[float, bool]]:
         raise NotImplementedError("CodeAgentLM.loglikelihood() is not supported")
     
@@ -129,7 +132,7 @@ class CodeAgentLM(TemplateLM):
             until = generation_kwargs.pop("until", [])
             
             try:
-                result = self.agent.run(context, **generation_kwargs)
+                result = self.agent.run(context)
                 
                 if not isinstance(result, str):
                     result = str(result)
@@ -158,7 +161,7 @@ class CodeAgentLM(TemplateLM):
         Returns:
             CodeAgentLM instance
         """
-        from lm_eval import utils
+        from lrage import utils
         
         additional_config = {} if additional_config is None else additional_config
         args = utils.simple_parse_args_string(arg_string)
@@ -169,14 +172,24 @@ class CodeAgentLM(TemplateLM):
         if "model" in combined_args and isinstance(combined_args["model"], str):
             model_str = combined_args.pop("model")
             model_args = combined_args.pop("model_args", {})
+            batch_size = combined_args.pop("batch_size", 1)
+            device = combined_args.pop("device", "cpu")
             
             if isinstance(model_args, str):
                 model_args = utils.simple_parse_args_string(model_args)
-            
+
+                if not("batch_size" in model_args.keys()):
+                    eval_logger.warning(f"Batch size not specified in model_args. Using batch size: {batch_size}")
+                    model_args["batch_size"] = batch_size
+                
+                if not("device" in model_args.keys()):
+                    eval_logger.warning(f"Device not specified in model_args. Using device: {device}")
+                    model_args["device"] = device
+                    
             if model_str.startswith("hf:"):
-                from smolagents.models import HuggingfaceModel
+                from smolagents.models import TransformersModel
                 model_id = model_str[3:]  # Remove 'hf:' prefix
-                combined_args["model"] = HuggingfaceModel(model_id=model_id, **model_args)
+                combined_args["model"] = TransformersModel(model_id=model_id, **model_args)
             elif model_str.startswith("hfapi:"):
                 try:
                     from smolagents.models import HfApiModel
@@ -185,14 +198,14 @@ class CodeAgentLM(TemplateLM):
                 except ImportError:
                     raise ImportError("HfApiModel not found in smolagents.models. Make sure you have the right version installed.")
             # Note: VLLMModel is not supported in latest smolagents version but in latest dev version. See: https://github.com/huggingface/smolagents/pull/337
-            # elif model_str.startswith("vllm:"):
-            #     try:
-            #         from smolagents.models import VLLMModel
-            #         model_id = model_str[5:]  # Remove 'vllm:' prefix
-            #         combined_args["model"] = VLLMModel(model_id=model_id, **model_args)
-            #     except ImportError:
-            #         raise ImportError("VLLMModel not found in smolagents.models. Make sure you have the right version installed.")
-            elif model_str.staerswith("mlx:"):
+            elif model_str.startswith("vllm:"):
+                try:
+                    from smolagents.models import VLLMModel
+                    model_id = model_str[5:]  # Remove 'vllm:' prefix
+                    combined_args["model"] = VLLMModel(model_id=model_id, **model_args)
+                except ImportError:
+                    raise ImportError("VLLMModel not found in smolagents.models. Make sure you have the right version installed.")
+            elif model_str.startswith("mlx:"):
                 try:
                     from smolagents.models import MLXModel
                     model_id = model_str[4:]  # Remove 'mlx:' prefix
