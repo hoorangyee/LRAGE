@@ -339,7 +339,7 @@ python -m pyserini.index.lucene \
   - ```
     {
         "legal-case-opinions": ["courtlistener_opinions","tax_rulings", "canadian_decisions", "echr"],
-        "laws": ["uscode", "state_codes", "cfr","eurlex", "tax_rulings"],
+        "laws": ["uscode", "state_codes", "cfr","eurlex"],
         "study-materials": ["cc_casebooks"]
     }
     ```
