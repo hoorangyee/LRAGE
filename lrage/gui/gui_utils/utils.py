@@ -1,12 +1,15 @@
+import os
 import yaml
 import gradio as gr
+from pathlib import Path
 
 def load_yaml_config(file_path):
     with open(file_path, 'r') as file:
         config = yaml.safe_load(file)
     return config
 
-config_file = "lrage/gui/gui_utils/gui_args.yaml"
+current_file = Path(__file__).resolve()
+config_file = os.path.join(current_file.parent, "gui_args.yaml")
 config = load_yaml_config(config_file)
 
 lm_eval_avil_model_types = config["lm_eval_avil_model_types"]
