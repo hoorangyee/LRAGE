@@ -18,7 +18,7 @@ You can check out our GUI demo directly on [HF Spaces](https://huggingface.co/sp
 ## Features
 
 <p align="center">
-    <img src="assets/LRAGE_intro.png" width="600">
+    <img src="assets/integrated" width="600">
 </p>
 
 - **Legal Domain Focused Evaluation**: LRAGE is specifically developed for evaluating LLMs in a RAG setting with datasets and document collections from the legal domain, such as [Pile-of-law](https://huggingface.co/datasets/pile-of-law/pile-of-law) and [LegalBench](https://github.com/HazyResearch/legalbench).
