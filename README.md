@@ -1,6 +1,10 @@
 
 # ⚖️ LRAGE: Legal Retrieval Augmented Generation Evaluation Tool
 
+<p align="center">
+    <img src="assets/LRAGE.png" width="500">
+</p>
+
 LRAGE (Legal Retrieval Augmented Generation Evaluation, pronounced as 'large') is an open-source toolkit designed to evaluate Large Language Models (LLMs) in a Retrieval-Augmented Generation (RAG) setting, specifically tailored for the legal domain.  
 
 LRAGE is developed to address the unique challenges that Legal AI researchers face, such as building and evaluating retrieval-augmented systems effectively. It seamlessly integrates datasets and tools to help researchers in evaluating LLM performance on legal tasks without cumbersome engineering overhead.
@@ -14,7 +18,7 @@ You can check out our GUI demo directly on [HF Spaces](https://huggingface.co/sp
 ## Features
 
 <p align="center">
-    <img src="assets/LRAGE_intro.png" width="600">
+    <img src="assets/integrated.png" width="600">
 </p>
 
 - **Legal Domain Focused Evaluation**: LRAGE is specifically developed for evaluating LLMs in a RAG setting with datasets and document collections from the legal domain, such as [Pile-of-law](https://huggingface.co/datasets/pile-of-law/pile-of-law) and [LegalBench](https://github.com/HazyResearch/legalbench).
@@ -335,7 +339,7 @@ python -m pyserini.index.lucene \
   - ```
     {
         "legal-case-opinions": ["courtlistener_opinions","tax_rulings", "canadian_decisions", "echr"],
-        "laws": ["uscode", "state_codes", "cfr","eurlex", "tax_rulings"],
+        "laws": ["uscode", "state_codes", "cfr","eurlex"],
         "study-materials": ["cc_casebooks"]
     }
     ```
