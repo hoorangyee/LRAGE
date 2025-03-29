@@ -9,7 +9,7 @@ LRAGE (Legal Retrieval Augmented Generation Evaluation, pronounced as 'large') i
 
 LRAGE is developed to address the unique challenges that Legal AI researchers face, such as building and evaluating retrieval-augmented systems effectively. It seamlessly integrates datasets and tools to help researchers in evaluating LLM performance on legal tasks without cumbersome engineering overhead.
 
-The submission version for NAACL can be found in this [tag](https://github.com/hoorangyee/LRAGE/tree/naacl).
+The submission version for ACL can be found in this [tag](https://github.com/hoorangyee/LRAGE/tree/acl).
 
 You can check the demo video at [here](https://youtu.be/5RU4q2eRqQ0).
 
