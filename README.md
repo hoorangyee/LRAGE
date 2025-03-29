@@ -21,7 +21,7 @@ You can check out our GUI demo directly on [HF Spaces](https://huggingface.co/sp
     <img src="assets/integrated.png" width="600">
 </p>
 
-- **Legal Domain Focused Evaluation**: LRAGE is specifically developed for evaluating LLMs in a RAG setting with datasets and document collections from the legal domain, such as [Pile-of-law](https://huggingface.co/datasets/pile-of-law/pile-of-law) and [LegalBench](https://github.com/HazyResearch/legalbench).
+- **Legal Domain Focused Evaluation**: LRAGE is specifically developed for evaluating LLMs in a RAG setting with datasets and document collections from the legal domain, such as [Pile-of-law](https://huggingface.co/datasets/pile-of-law/pile-of-law), [LegalBench](https://github.com/HazyResearch/legalbench), [LawBench](https://github.com/open-compass/LawBench), [KBL](https://github.com/lbox-kr/kbl), and [Legal RAG Benchmarks](https://github.com/reglab/legal-rag-benchmarks).
 
 - **Pre-compiled indexes for the legal domain**: Comes with pre-generated BM25 indices and embeddings for Pile-of-law, reducing the setup effort for researchers.  
 
