@@ -11,7 +11,7 @@ LRAGE is developed to address the unique challenges that Legal AI researchers fa
 
 The submission version for NAACL can be found in this [tag](https://github.com/hoorangyee/LRAGE/tree/naacl).
 
-You can check the demo video at [here](https://youtu.be/1Sy8kYY03bo).
+You can check the demo video at [here](https://youtu.be/5RU4q2eRqQ0).
 
 You can check out our GUI demo directly on [HF Spaces](https://huggingface.co/spaces/wonseok-uos/LRAGE).
 
