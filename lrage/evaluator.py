@@ -417,7 +417,7 @@ def simple_evaluate(
         log_samples=log_samples,
         system_instruction=system_instruction,
         apply_chat_template=apply_chat_template,
-        retrieve_docs=retrieve_docs,
+        retrieve_docs=retrieve_docs if model != "codeagent" else False,
         top_k=top_k,
         retriever=retriever,
         rerank=rerank,
