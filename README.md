@@ -15,6 +15,8 @@ You can check the demo video at [here](https://youtu.be/5RU4q2eRqQ0).
 
 You can check out our GUI demo directly on [HF Spaces](https://huggingface.co/spaces/wonseok-uos/LRAGE).
 
+For more details on our methodology, results, and analysis, please refer to our paper: [LRAGE: Legal Retrieval Augmented Generation Evaluation](paper/main_acl_demo_submitted.pdf) and its [supplementary materials](paper/appendix_acl_demo_submitted.pdf)
+
 ## Features
 
 <p align="center">
