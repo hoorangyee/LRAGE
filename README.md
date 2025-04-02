@@ -1,5 +1,5 @@
 
-# ⚖️ LRAGE: Legal Retrieval Augmented Generation Evaluation Tool
+# <img src="assets/lrage_owl.jpg" width="30" style="vertical-align: middle;"/> LRAGE: Legal Retrieval Augmented Generation Evaluation Tool
 
 <p align="center">
     <img src="assets/LRAGE.png" width="500">
