@@ -1,0 +1,23 @@
+task: housing_qa_generative
+dataset_path: reglab/housing_qa
+dataset_name: questions
+test_split: test
+output_type: generate_until
+doc_to_text: "Consider statutory law for {{state}} in the year 2021. {{question}}
+
+Answer \"Yes\" or \"No\".
+Answer: "
+doc_to_target: !function utils.doc_to_target
+filter_list:
+  - name: "flexible-extract"
+    filter:
+      - function: "regex"
+        group_select: -1
+        regex_pattern: "(?i)yes|no"
+      - function: "take_first"
+metric_list:
+- metric: exact_match
+  aggregation: mean
+  higher_is_better: true
+  ignore_punctuation: true
+  ignore_case: true

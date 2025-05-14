@@ -1,0 +1,23 @@
+task: barexam_qa_generative
+dataset_path: hoorangyee/barexam_qa_subset
+dataset_name: qa
+output_type: generate_until
+training_split: train
+validation_split: validation
+test_split: test
+doc_to_text: "{{prompt}}\n\n{{question}}\nA) {{choice_a}}\nB) {{choice_b}}\nC) {{choice_c}}\nD) {{choice_d}}\n\nAnswer:"
+doc_to_target: "{{answer}}"
+doc_to_target: !function utils.doc_to_target
+filter_list:
+  - name: "flexible-extract"
+    filter:
+      - function: "regex"
+        group_select: -1
+        regex_pattern: "[A-Z]"
+      - function: "take_first"
+metric_list:
+- metric: exact_match
+  aggregation: mean
+  higher_is_better: true
+  ignore_punctuation: true
+  ignore_case: true
