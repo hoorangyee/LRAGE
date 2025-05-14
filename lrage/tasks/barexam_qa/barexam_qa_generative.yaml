@@ -1,5 +1,5 @@
 task: barexam_qa_generative
-dataset_path: hoorangyee/barexam_qa_subset
+dataset_path: reglab/barexam_qa
 dataset_name: qa
 output_type: generate_until
 training_split: train
