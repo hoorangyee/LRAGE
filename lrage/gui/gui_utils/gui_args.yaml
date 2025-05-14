@@ -1,7 +1,7 @@
 lm_eval_avil_model_types:
   "🤗 Hugging Face": "huggingface"
   "OpenAI": "openai-chat-completions"
-  "Code-Agent": "codeagent"
+  "SmolAgents": "codeagent"
 
 lm_eval_avil_model_args:
   huggingface:
@@ -32,12 +32,12 @@ lm_eval_avil_model_args:
 
 retriever_args:
   pyserini:
-    - "retriever_type=bm25,bm25_index_path=../../bm25_indexes/pile-of-law-mini"
+    - "retriever_type=bm25,bm25_index_path=./bm25_indexes/pile-of-law-mini"
     - "retriever_type=bm25,bm25_index_path=msmarco-v1-passage"
     - "retriever_type=bm25,bm25_index_path=wikipedia-dpr-100w"
-    - "retriever_type=dense,bm25_index_path=../../bm25_indexes/pile-of-law-mini,faiss_index_path=../../faiss_indexes/pile-of-law-mini,encoder_path=nlpaueb/legal-bert-base-uncased,encoder_type=auto"
-    - "retriever_type=dense,bm25_index_path=../../bm25_indexes/pile-of-law-mini,faiss_index_path=../../faiss_indexes/pile-of-law-mini,encoder_path=lexlms/legal-longformer-base,encoder_type=auto"
-    - "retriever_type=dense,bm25_index_path=../../bm25_indexes/pile-of-law-mini,faiss_index_path=../../faiss_indexes/pile-of-law-mini,encoder_path=lexlms/lexlms/legal-roberta-base,encoder_type=auto"
+    - "retriever_type=dense,bm25_index_path=./bm25_indexes/pile-of-law-mini,faiss_index_path=./faiss_indexes/pile-of-law-mini,encoder_path=nlpaueb/legal-bert-base-uncased,encoder_type=auto"
+    - "retriever_type=dense,bm25_index_path=./bm25_indexes/pile-of-law-mini,faiss_index_path=./faiss_indexes/pile-of-law-mini,encoder_path=lexlms/legal-longformer-base,encoder_type=auto"
+    - "retriever_type=dense,bm25_index_path=./bm25_indexes/pile-of-law-mini,faiss_index_path=./faiss_indexes/pile-of-law-mini,encoder_path=lexlms/lexlms/legal-roberta-base,encoder_type=auto"
     - "retriever_type=dense,bm25_index_path=wikipedia-dpr-100w,faiss_index_path=wikipedia-dpr-100w,encoder_path=facebook/dpr-question_encoder-multiset-base,encoder_type=dpr"
     - "retriever_type=dense,bm25_index_path=wikipedia-dpr-100w,faiss_index_path=wikipedia-dpr-100w,encoder_path=nlpaueb/legal-bert-base-uncased,encoder_type=auto"
 
