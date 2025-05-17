@@ -349,6 +349,8 @@ python -m pyserini.index.lucene \
         "study-materials": ["cc_casebooks"]
     }
     ```
+- [barexam-qa-bm25](https://huggingface.co/datasets/hoorangyee/barexam-qa-bm25)
+- [housing-qa-bm25](https://huggingface.co/datasets/hoorangyee/housing-qa-bm25)
 
 ## Roadmap
 
@@ -358,8 +360,10 @@ python -m pyserini.index.lucene \
 - [x] Document more detailed usage instructions
 - [x] [Publish and share Pile-of-law BM25 index](https://huggingface.co/datasets/hoorangyee/pile-of-law-bm25)
 - [x] [Publish and share Pile-of-law chunks](https://huggingface.co/datasets/hoorangyee/pile-of-law-chunked)
+- [x] Publish and share BM25 indices for the corpus released in the paper [A Reasoning-Focused Legal Retrieval Benchmark](https://reglab.github.io/legal-rag-benchmarks/)
+    - [barexam-qa-bm25](https://huggingface.co/datasets/hoorangyee/barexam-qa-bm25)
+    - [housing-qa-bm25](https://huggingface.co/datasets/hoorangyee/housing-qa-bm25) 
 - [ ] Publish and share Pile-of-law embeddings
-- [ ] Publish and share BM25 indices for the corpus released in the paper [A Reasoning-Focused Legal Retrieval Benchmark](https://reglab.github.io/legal-rag-benchmarks/)
 - [ ] Publish benchmark results obtained using LRAGE
 - [ ] Refactor the agent integration structure
 - [ ] Add more integrations with the retriever, reranker, and agent frameworks
