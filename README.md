@@ -361,6 +361,10 @@ python -m pyserini.index.lucene \
 - [ ] Publish and share Pile-of-law embeddings
 - [ ] Publish and share BM25 indices for the corpus released in the paper [A Reasoning-Focused Legal Retrieval Benchmark](https://reglab.github.io/legal-rag-benchmarks/)
 - [ ] Publish benchmark results obtained using LRAGE
+- [ ] Refactor the agent integration structure
+- [ ] Add more integrations with the retriever, reranker, and agent frameworks
+- [ ] Synchronize with latest version of lm-evaluation-harness
+- [ ] Add an auto-indexing feature
 
 ## Contributing
 
