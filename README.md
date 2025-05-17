@@ -365,7 +365,7 @@ python -m pyserini.index.lucene \
     - [housing-qa-bm25](https://huggingface.co/datasets/hoorangyee/housing-qa-bm25) 
 - [ ] Publish and share Pile-of-law embeddings
 - [ ] Publish benchmark results obtained using LRAGE
-- [ ] Refactor the agent integration structure
+- [ ] Refactor the agent integration structure and merge it into the main branch
 - [ ] Add more integrations with the retriever, reranker, and agent frameworks
 - [ ] Synchronize with latest version of lm-evaluation-harness
 - [ ] Add an auto-indexing feature
