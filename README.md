@@ -360,7 +360,6 @@ python -m pyserini.index.lucene \
 - [x] [Publish and share Pile-of-law chunks](https://huggingface.co/datasets/hoorangyee/pile-of-law-chunked)
 - [ ] Publish and share Pile-of-law embeddings
 - [ ] Publish and share BM25 indices for the corpus released in the paper [A Reasoning-Focused Legal Retrieval Benchmark](https://reglab.github.io/legal-rag-benchmarks/)
-
 - [ ] Publish benchmark results obtained using LRAGE
 
 ## Contributing
@@ -370,10 +369,13 @@ Contributions and community engagement are welcome! We value your input in makin
 ## Citation
 
 ```
-@Misc{lrage,
-  title =        {LARGE: Legal Retrieval Augmented Generation Evaluation Tool},
-  author =       {Minhu Park, Hongseok Oh, Eunkyung Choi, and Wonseok Hwang},
-  howpublished = {\url{https://github.com/hoorangyee/LRAGE}},
-  year =         {2024}
+@misc{park2025lrage,
+  title={LARGE: Legal Retrieval Augmented Generation Evaluation Tool},
+  author={Minhu Park, Hongseok Oh, Eunkyung Choi, and Wonseok Hwang},
+  year={2025},
+  eprint={2504.01840},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL},
+  url={https://arxiv.org/abs/2504.01840}, 
 }   
 ```
