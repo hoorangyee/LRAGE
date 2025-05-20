@@ -378,7 +378,7 @@ Contributions and community engagement are welcome! We value your input in makin
 
 ```
 @misc{park2025lrage,
-  title={LARGE: Legal Retrieval Augmented Generation Evaluation Tool},
+  title={LRAGE: Legal Retrieval Augmented Generation Evaluation Tool},
   author={Minhu Park, Hongseok Oh, Eunkyung Choi, and Wonseok Hwang},
   year={2025},
   eprint={2504.01840},
