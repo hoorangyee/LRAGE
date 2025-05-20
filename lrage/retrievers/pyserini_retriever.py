@@ -1,5 +1,7 @@
 from typing import List, Optional
 import json
+import os
+import subprocess
 
 from pyserini.search.lucene import LuceneSearcher, LuceneImpactSearcher
 from pyserini.search.faiss import FaissSearcher
@@ -34,12 +36,49 @@ class PyseriniRetriever(Retriever):
 
         if bm25_index_path is None:
             raise ValueError("All retrievers require a bm25_index_path")
-        self.bm25_searcher = LuceneSearcher.from_prebuilt_index(bm25_index_path) if bm25_index_path in TF_INDEX_INFO else LuceneSearcher(bm25_index_path)
+
+        if bm25_index_path in TF_INDEX_INFO:
+            self.bm25_searcher = LuceneSearcher.from_prebuilt_index(bm25_index_path)
+        else:
+            index_path = self._ensure_index(bm25_index_path)
+            self.bm25_searcher = LuceneSearcher(index_path)
 
         self.searcher = self._initialize_searcher(
-            retriever_type, sparse_index_path, faiss_index_path, 
+            retriever_type, sparse_index_path, faiss_index_path,
             encoder_path, encoder_type, tokenizer_name, device, max_length, pooling, l2_norm, prefix, multimodal
         )
+
+    def _is_lucene_index(self, path: str) -> bool:
+        """Check if the given path looks like a Lucene index."""
+        if not os.path.isdir(path):
+            return False
+        files = os.listdir(path)
+        return any(f.startswith('segments') for f in files)
+
+    def _ensure_index(self, path: str) -> str:
+        """Return a path to a Lucene index for the documents at ``path``.
+
+        If ``path`` already contains an index, it is returned as-is. Otherwise,
+        the documents at ``path`` are indexed into ``path + '_index'`` using
+        Pyserini's indexing command.
+        """
+        if self._is_lucene_index(path):
+            return path
+
+        index_dir = f"{path}_index"
+        if not self._is_lucene_index(index_dir):
+            os.makedirs(index_dir, exist_ok=True)
+            cmd = [
+                'python', '-m', 'pyserini.index.lucene',
+                '--collection', 'JsonCollection',
+                '--input', path,
+                '--index', index_dir,
+                '--generator', 'DefaultLuceneDocumentGenerator',
+                '--threads', '1',
+                '--storePositions', '--storeDocvectors', '--storeRaw'
+            ]
+            subprocess.run(cmd, check=True)
+        return index_dir
 
     # copy from pyserini.search.faiss.init_query_encoder
     def _init_query_encoder(self, encoder, encoder_class, tokenizer_name, device, max_length, pooling, l2_norm, prefix, multimodal=False):

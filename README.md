@@ -295,10 +295,11 @@ lrage \
    
 ## Indexing
 
-For now, you have three options:  
+For now, you have four options:
 1. Use Pyserini's prebuilt indexes available out of the box
 2. Use our prebuilt Pile-of-law-mini indexes
-3. Create your own index by following [Pyserini's indexing documentation](https://github.com/castorini/pyserini/blob/master/docs/usage-index.md)
+3. Let LRAGE automatically create an index by passing the path to your raw documents as `bm25_index_path`
+4. Create your own index by following [Pyserini's indexing documentation](https://github.com/castorini/pyserini/blob/master/docs/usage-index.md)
 
 #### How to Index a New Corpus Using Pyserini  
 
@@ -368,7 +369,7 @@ python -m pyserini.index.lucene \
 - [ ] Refactor the agent integration structure and merge it into the main branch
 - [ ] Add more integrations with the retriever, reranker, and agent frameworks
 - [ ] Synchronize with latest version of lm-evaluation-harness
-- [ ] Add an auto-indexing feature
+- [x] Add an auto-indexing feature
 
 ## Contributing
 
