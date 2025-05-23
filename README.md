@@ -15,7 +15,7 @@ You can check the demo video at [here](https://youtu.be/5RU4q2eRqQ0).
 
 You can check out our GUI demo directly on [HF Spaces](https://huggingface.co/spaces/wonseok-uos/LRAGE).
 
-For more details on our methodology, results, and analysis, please refer to our paper: [LRAGE: Legal Retrieval Augmented Generation Evaluation](paper/main_acl_demo_submitted.pdf) and its [supplementary materials](paper/appendix_acl_demo_submitted.pdf)
+For more details on our methodology, results, and analysis, please refer to our paper: [LRAGE: Legal Retrieval Augmented Generation Evaluation](paper/main_acl_demo_submitted.pdf) and its [supplementary materials](paper/appendix_acl_demo_submitted.pdf), and the corresponding [arXiv preprint](https://arxiv.org/abs/2504.01840).
 
 ## Features
 
@@ -295,10 +295,11 @@ lrage \
    
 ## Indexing
 
-For now, you have three options:  
+For now, you have four options:
 1. Use Pyserini's prebuilt indexes available out of the box
 2. Use our prebuilt Pile-of-law-mini indexes
-3. Create your own index by following [Pyserini's indexing documentation](https://github.com/castorini/pyserini/blob/master/docs/usage-index.md)
+3. Let LRAGE automatically create an index by passing the path to your raw documents as `bm25_index_path`
+4. Create your own index by following [Pyserini's indexing documentation](https://github.com/castorini/pyserini/blob/master/docs/usage-index.md)
 
 #### How to Index a New Corpus Using Pyserini  
 
@@ -349,6 +350,8 @@ python -m pyserini.index.lucene \
         "study-materials": ["cc_casebooks"]
     }
     ```
+- [barexam-qa-bm25](https://huggingface.co/datasets/hoorangyee/barexam-qa-bm25)
+- [housing-qa-bm25](https://huggingface.co/datasets/hoorangyee/housing-qa-bm25)
 
 ## Roadmap
 
@@ -358,10 +361,15 @@ python -m pyserini.index.lucene \
 - [x] Document more detailed usage instructions
 - [x] [Publish and share Pile-of-law BM25 index](https://huggingface.co/datasets/hoorangyee/pile-of-law-bm25)
 - [x] [Publish and share Pile-of-law chunks](https://huggingface.co/datasets/hoorangyee/pile-of-law-chunked)
+- [x] Publish and share BM25 indices for the corpus released in the paper [A Reasoning-Focused Legal Retrieval Benchmark](https://reglab.github.io/legal-rag-benchmarks/)
+    - [barexam-qa-bm25](https://huggingface.co/datasets/hoorangyee/barexam-qa-bm25)
+    - [housing-qa-bm25](https://huggingface.co/datasets/hoorangyee/housing-qa-bm25) 
 - [ ] Publish and share Pile-of-law embeddings
-- [ ] Publish and share BM25 indices for the corpus released in the paper [A Reasoning-Focused Legal Retrieval Benchmark](https://reglab.github.io/legal-rag-benchmarks/)
-
 - [ ] Publish benchmark results obtained using LRAGE
+- [ ] Refactor the agent integration structure and merge it into the main branch
+- [ ] Add more integrations with the retriever, reranker, and agent frameworks
+- [ ] Synchronize with latest version of lm-evaluation-harness
+- [x] Add an auto-indexing feature
 
 ## Contributing
 
@@ -370,10 +378,13 @@ Contributions and community engagement are welcome! We value your input in makin
 ## Citation
 
 ```
-@Misc{lrage,
-  title =        {LARGE: Legal Retrieval Augmented Generation Evaluation Tool},
-  author =       {Minhu Park, Hongseok Oh, Eunkyung Choi, and Wonseok Hwang},
-  howpublished = {\url{https://github.com/hoorangyee/LRAGE}},
-  year =         {2024}
+@misc{park2025lrage,
+  title={LRAGE: Legal Retrieval Augmented Generation Evaluation Tool},
+  author={Minhu Park, Hongseok Oh, Eunkyung Choi, and Wonseok Hwang},
+  year={2025},
+  eprint={2504.01840},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL},
+  url={https://arxiv.org/abs/2504.01840}, 
 }   
 ```
