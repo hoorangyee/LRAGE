@@ -94,7 +94,29 @@ To evaluate a model on a sample dataset using the RAG setting, follow these step
    --reranker_args reranker_type=colbert
    ```
 
-   B. Run the GUI:
+   B. Run the web UI:
+   ```bash
+   pip install -e .[web]
+   lrage-serve --port 8000   # then open http://127.0.0.1:8000
+   ```
+
+   The web UI runs evaluations in the background with live progress
+   streaming, keeps a run history with per-sample inspection (prompt /
+   response / judge output), and can compare metrics across runs. Runs and
+   results are stored under `~/.lrage/webapp/` by default (`--data-dir`,
+   `--output-dir` to change).
+
+   The built web UI bundle ships in the repository (`lrage/webapp/static/`,
+   kept up to date by the "Build web UI" GitHub Action), so installing from
+   source needs no Node/npm. npm is only needed to develop the frontend:
+   run `npm install && npm run dev` in `frontend/` (proxies `/api` to
+   `lrage-serve` on port 8000); `npm run build` emits the production bundle
+   into `lrage/webapp/static/`.
+
+   <img width="1512" alt="LRAGE web UI — configuring an evaluation on the pipeline canvas" src="assets/webui-new-run.png">
+   <img width="1512" alt="LRAGE web UI — per-sample inspection with judge output" src="assets/webui-samples.png">
+
+   C. Run the legacy Gradio GUI:
    ```bash
    cd LRAGE
    ./run_gui.sh
