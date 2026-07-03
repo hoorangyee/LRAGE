@@ -49,13 +49,20 @@ dependencies = [
 include = ["lrage*"]
 
 [tool.setuptools.package-data]
-lrage = ["**/*.yaml", "tasks/**/*"]
+lrage = ["**/*.yaml", "tasks/**/*", "webapp/static/**/*"]
 
 [project.scripts]
 lrage = "lrage.__main__:cli_evaluate"
+lrage-serve = "lrage.webapp.cli:main"
 
 [project.optional-dependencies]
 anthropic = ["anthropic"]
+web = [
+    "fastapi>=0.104,<0.116",
+    "pydantic>=2.5,<2.11",
+    "uvicorn[standard]>=0.23,<0.34",
+    "sse-starlette>=1.6,<2.2",
+]
 dev = ["pytest", "pytest-cov", "pytest-xdist", "pre-commit", "mypy"]
 deepsparse = ["deepsparse-nightly[llm]>=1.8.0.20240404"]
 gptq = ["auto-gptq[triton]>=0.6.0"]

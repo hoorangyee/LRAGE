@@ -1,0 +1,2 @@
+recursive-include lrage/webapp/static *
+recursive-include lrage *.yaml

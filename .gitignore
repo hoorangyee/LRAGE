@@ -22,3 +22,9 @@ lrage/caching/.cache
 wandb
 examples/wandb
 eval_results/*
+.DS_Store
+# webapp
+.venv/
+frontend/node_modules/
+lrage/webapp/static/*
+!lrage/webapp/static/.gitkeep
