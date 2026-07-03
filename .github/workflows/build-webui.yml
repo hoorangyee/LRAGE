@@ -1,0 +1,51 @@
+# Builds the React frontend and commits the bundle into lrage/webapp/static/
+# so that source installs (git clone + pip install -e .) get the web UI
+# without needing Node/npm.
+#
+# Runs when frontend sources change on main; run it manually from the Actions
+# tab (workflow_dispatch) to seed the first build.
+name: Build web UI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/build-webui.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: build-webui
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    if: github.repository == 'hoorangyee/LRAGE'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+      - name: Commit built assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # static/ is gitignored for local dev; force-add the CI build.
+          git add -f -A lrage/webapp/static
+          if git diff --cached --quiet; then
+            echo "Web UI bundle unchanged; nothing to commit."
+          else
+            git commit -m "build: web UI assets [skip ci]"
+            git push
+          fi
