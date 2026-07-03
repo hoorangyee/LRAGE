@@ -1,0 +1,130 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource-variable/source-serif-4";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * LRAGE theme — "brass on slate".
+ * Warm near-black neutrals, a single brass accent (primary actions, active
+ * nav, running state), desaturated status colors. Dark is the default UI;
+ * light is a warm paper tone. All fonts self-hosted (offline research boxes).
+ */
+:root {
+  --background: #faf7f2;
+  --foreground: #2a2620;
+  --card: #ffffff;
+  --card-foreground: #2a2620;
+  --popover: #ffffff;
+  --popover-foreground: #2a2620;
+  --primary: #8f7439;
+  --primary-foreground: #faf7f2;
+  --secondary: #f1ece2;
+  --secondary-foreground: #2a2620;
+  --muted: #f1ece2;
+  --muted-foreground: #7a7160;
+  --accent: #f1ece2;
+  --accent-foreground: #2a2620;
+  --destructive: #a8503f;
+  --destructive-foreground: #faf7f2;
+  --border: #e6dfd2;
+  --input: #d9d1c2;
+  --ring: #8f7439;
+  --radius: 0.375rem;
+
+  --brass: #8f7439;
+  --status-ok: #4e7a52;
+  --status-warn: #96762e;
+  --status-err: #a8503f;
+
+  color-scheme: light;
+}
+
+.dark {
+  --background: #191714;
+  --foreground: #ede8df;
+  --card: #201d19;
+  --card-foreground: #ede8df;
+  --popover: #232019;
+  --popover-foreground: #ede8df;
+  --primary: #c9a96a;
+  --primary-foreground: #1a1712;
+  --secondary: #2c2823;
+  --secondary-foreground: #ede8df;
+  --muted: #262220;
+  --muted-foreground: #9c9384;
+  --accent: #2c2823;
+  --accent-foreground: #ede8df;
+  --destructive: #c96f5e;
+  --destructive-foreground: #1a1712;
+  --border: #322d27;
+  --input: #3a342c;
+  --ring: #c9a96a;
+
+  --brass: #c9a96a;
+  --status-ok: #7fa881;
+  --status-warn: #c9a25f;
+  --status-err: #c97b6e;
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brass: var(--brass);
+  --color-status-ok: var(--status-ok);
+  --color-status-warn: var(--status-warn);
+  --color-status-err: var(--status-err);
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --font-serif: "Source Serif 4 Variable", ui-serif, Georgia, serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans text-sm antialiased;
+  }
+  /* Page titles carry the legal-domain serif; everything else stays sans. */
+  .page-title {
+    @apply font-serif text-xl font-semibold tracking-tight;
+  }
+  /* Section labels, Linear-style. */
+  .section-label {
+    @apply text-[11px] font-medium uppercase tracking-widest text-muted-foreground;
+  }
+  /* Metric values and args strings are data, not prose. */
+  .data-mono {
+    @apply font-mono tabular-nums;
+  }
+}
