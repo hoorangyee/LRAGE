@@ -45,6 +45,12 @@ dependencies = [
     "more_itertools",
 ]
 
+[tool.pytest.ini_options]
+# Tests import helpers as tests.webapp.conftest; put the repo root on
+# sys.path so plain `pytest` works the same as `python -m pytest`.
+pythonpath = ["."]
+testpaths = ["tests"]
+
 [tool.setuptools.packages.find]
 include = ["lrage*"]
 
